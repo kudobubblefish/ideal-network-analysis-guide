@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>理想汽车｜网络分析专员面试准备指南（深度加强版）</title>
+<style>
+:root{
+  --ink:#20242b;--muted:#667085;--line:#e6e8ec;--bg:#f5f6f8;--paper:#fff;
+  --red:#b72f35;--red-soft:#fff1f1;--blue:#315b83;--blue-soft:#eef5fb;
+  --green:#28745c;--green-soft:#edf7f2;--amber:#94621c;--amber-soft:#fff7e8;
+  --shadow:0 8px 28px rgba(22,30,45,.06);--radius:16px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.75 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 22px 70px}
+.hero{background:linear-gradient(125deg,#20242b 0%,#333b48 68%,#6a3438 100%);color:#fff;border-radius:22px;padding:38px 42px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:330px;height:330px;border:1px solid rgba(255,255,255,.12);border-radius:50%;right:-80px;top:-120px;box-shadow:0 0 0 35px rgba(255,255,255,.035),0 0 0 75px rgba(255,255,255,.025)}
+.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#e9b8b9;font-weight:700}
+h1{font-size:34px;line-height:1.25;margin:10px 0 14px;letter-spacing:-.03em}
+.hero p{max-width:790px;color:#e8ebef;margin:0 0 18px}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.hero-tags span{border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:5px 11px;font-size:12px;color:#f4f4f4}
+.layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:24px;margin-top:24px;align-items:start}
+.sidebar{position:sticky;top:16px;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:17px;box-shadow:var(--shadow);max-height:calc(100vh - 32px);overflow:auto}
+.sidebar strong{display:block;font-size:13px;margin-bottom:9px}
+.sidebar a{display:block;padding:6px 8px;border-radius:8px;color:#4d5664;font-size:13px}
+.sidebar a:hover{background:#f3f5f7;text-decoration:none;color:var(--red)}
+.search{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;margin:0 0 12px;background:#fbfcfd}
+.content{min-width:0}
+section{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:28px 30px;margin-bottom:18px;box-shadow:var(--shadow);scroll-margin-top:18px}
+h2{font-size:22px;line-height:1.35;margin:0 0 16px;letter-spacing:-.02em}
+h3{font-size:17px;margin:24px 0 9px}
+h4{font-size:14px;margin:17px 0 6px}
+p{margin:8px 0 12px}
+ul,ol{padding-left:22px;margin:8px 0 14px}
+li{margin:4px 0}
+.lead{font-size:16px;color:#3c4653}
+.kicker{font-size:12px;font-weight:700;color:var(--red);letter-spacing:.08em;text-transform:uppercase;margin-bottom:7px}
+.callout{border-left:4px solid var(--red);background:var(--red-soft);padding:14px 16px;border-radius:0 10px 10px 0;margin:14px 0}
+.note{background:var(--blue-soft);border:1px solid #dbe8f3;border-radius:12px;padding:13px 15px;margin:14px 0}
+.warn{background:var(--amber-soft);border:1px solid #f0dfbd;border-radius:12px;padding:13px 15px;margin:14px 0}
+.good{background:var(--green-soft);border:1px solid #d9eee4;border-radius:12px;padding:13px 15px;margin:14px 0}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.mini{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fff}
+.mini b{display:block;margin-bottom:5px}
+.mini p{font-size:13px;color:var(--muted);margin:0}
+table{width:100%;border-collapse:collapse;margin:12px 0 16px;font-size:13px}
+th,td{border:1px solid var(--line);padding:10px 11px;text-align:left;vertical-align:top}
+th{background:#f5f6f8;color:#3b4552;font-weight:700}
+td{color:#3e4753}
+.small{font-size:12px;color:var(--muted)}
+.pill{display:inline-block;border-radius:999px;background:#f1f3f5;padding:2px 9px;font-size:11px;color:#596273;margin:2px 3px 2px 0}
+.flow{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin:14px 0}
+.flow span{background:#f4f5f7;border:1px solid var(--line);border-radius:9px;padding:8px 10px;font-size:13px;font-weight:600}
+.flow i{font-style:normal;color:#9aa2ad}
+.qa{border:1px solid var(--line);border-radius:12px;margin:11px 0;overflow:hidden}
+.qa summary{cursor:pointer;padding:13px 15px;font-weight:700;background:#fafbfc;list-style:none}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary:after{content:"＋";float:right;color:var(--muted)}
+.qa[open] summary:after{content:"－"}
+.answer{padding:14px 16px;border-top:1px solid var(--line)}
+.script{background:#f8f9fb;border:1px solid var(--line);border-radius:12px;padding:15px 17px;margin:10px 0}
+.script .label{font-size:11px;color:var(--red);font-weight:700;letter-spacing:.08em;margin-bottom:6px}
+.checklist label{display:flex;gap:9px;align-items:flex-start;padding:6px 0;cursor:pointer}
+.checklist input{margin-top:6px;accent-color:var(--red)}
+.checklist label:has(input:checked) span{text-decoration:line-through;color:#89919c}
+hr{border:0;border-top:1px solid var(--line);margin:22px 0}
+.footer{text-align:center;color:#8a929d;font-size:12px;padding:20px}
+.highlight{color:var(--red);font-weight:700}
+.two-col{columns:2;column-gap:28px}
+.two-col li{break-inside:avoid}
+code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:#f1f3f5;padding:2px 5px;border-radius:5px;font-size:12px}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{position:static;max-height:none}.grid3{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.wrap{padding:14px 10px 45px}.hero{padding:27px 22px}h1{font-size:27px}section{padding:21px 18px}.grid2,.grid3{grid-template-columns:1fr}.two-col{columns:1}table{display:block;overflow-x:auto;white-space:normal}}
+@media print{body{background:#fff}.wrap{max-width:none;padding:0}.hero,section,.sidebar{box-shadow:none}.layout{display:block}.sidebar{display:none}.hero{border-radius:0}section{break-inside:avoid;border:0;border-bottom:1px solid #ddd}.qa .answer{display:block}.qa summary:after{display:none}a{color:inherit;text-decoration:underline}}
+
+pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#202733;color:#e9edf3;padding:15px 17px;border-radius:11px;overflow-x:auto;font:12.5px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace}
+pre code{background:none;color:inherit;padding:0;font-size:inherit}
+.metric{font-size:24px;font-weight:800;letter-spacing:-.03em;color:var(--red);line-height:1.2}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div class="eyebrow">Interview Playbook · 2027 Campus Hiring</div>
+  <h1>理想汽车｜网络分析专员<br>完整面试准备指南</h1>
+  <p>围绕门店网络规划、商圈开发优先级、AI 批量分析、实地调研结构化和门店经营复盘，建立一套从数据到开店决策、再到模型迭代的完整表达框架。</p>
+  <div class="hero-tags"><span>岗位理解</span><span>机器学习与空间分析</span><span>选址案例</span><span>简历深挖</span><span>行为面试</span><span>反问清单</span></div>
+</header>
+
+<div class="layout">
+<aside class="sidebar">
+  <strong>快速导航</strong>
+  <input class="search" id="searchBox" placeholder="搜索本指南关键词…" aria-label="搜索本指南">
+  <nav>
+    <a href="#position">01 岗位定位</a>
+    <a href="#company">02 理想汽车业务理解</a>
+    <a href="#intro">03 自我介绍与动机</a>
+    <a href="#match">04 个人经历匹配</a>
+    <a href="#workflow">05 网络规划完整方法</a>
+    <a href="#data">06 数据与指标体系</a>
+    <a href="#algorithm">07 算法知识速记</a>
+    <a href="#ai">08 AI 自动化方案</a>
+    <a href="#cases">09 业务案例题</a>
+    <a href="#techqa">10 技术追问</a>
+    <a href="#resume">11 简历深挖</a>
+    <a href="#behavior">12 行为面试</a>
+    <a href="#questions">13 高频问题清单</a>
+    <a href="#ask">14 面试反问</a>
+    <a href="#check">15 面试前检查</a>
+    
+    <a href="#role-deep">深度补充 A｜公司与行业定位</a>
+    <a href="#daily-deep">深度补充 B｜详细日常工作流</a>
+    <a href="#company-deep">深度补充 C｜理想经营与渠道</a>
+    <a href="#ml-deep">深度补充 D｜机器学习详解</a>
+    <a href="#sql-deep">深度补充 E｜SQL 系统准备</a>
+    <a href="#behavior-deep">深度补充 F｜行为面试完整回答</a>
+    <a href="#qa-deep">深度补充 G｜高频问题完整回答</a>
+    <a href="#sources">公开资料来源</a>
+  </nav>
+</aside>
+
+<main class="content">
+<section id="position">
+  <div class="kicker">Start here</div>
+  <h2>01｜先建立正确的岗位定位</h2>
+  <p class="lead"><b>一句话理解：</b>网络分析专员是利用数据和算法，帮助公司回答“哪些城市值得进入、哪些商圈值得开发、具体门店应该选在哪里、开业后表现是否符合预期”的业务分析岗位。</p>
+  <div class="callout"><b>面试主线：</b>业务目标 → 多源数据接入与清洗 → 特征构建 → 潜力预测/选址排序 → 实地调研验证 → 门店经营复盘 → 模型规则迭代。</div>
+  <div class="grid3">
+    <div class="mini"><b>不是传统报表分析</b><p>不只是统计门店销量，而是提前参与网络规划，把分析结果转化为开店优先级和选址建议。</p></div>
+    <div class="mini"><b>不是纯算法研发</b><p>不一定从零设计复杂算法，重点是选对方法、处理业务数据、验证模型结果并推动落地。</p></div>
+    <div class="mini"><b>不是单纯跑点位</b><p>选址不只看人流和租金，还要结合目标客群、竞争格局、现有门店覆盖和未来销量。</p></div>
+  </div>
+  <h3>JD 三项职责拆解</h3>
+  <table>
+    <thead><tr><th>JD 职责</th><th>真正要解决的问题</th><th>可能使用的方法</th><th>交付物</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. AI 批量分析与网络规划</b></td><td>不同省市、商圈和候选点位的潜力如何比较？如何从人工经验转为批量、可复用的决策流程？</td><td>数据清洗、特征工程、城市分层、聚类、需求预测、综合评分、空间覆盖分析、选址优化</td><td>城市拓展优先级、商圈开发清单、候选门店排序、评分依据和风险提示</td></tr>
+      <tr><td><b>2. 实地调研与模型校正</b></td><td>线上数据是否真实反映现场？商场/汽车城的人流、可见度、交通和竞品情况如何？</td><td>标准化调研表、地址地理编码、OCR/文本抽取、人工核验、预测值与现场证据对照</td><td>结构化区位数据库、调研记录、模型修正项、点位准入/淘汰建议</td></tr>
+      <tr><td><b>3. 门店复盘与规则迭代</b></td><td>哪些选址因素与门店实际表现相关？低效门店是选址问题还是运营问题？</td><td>门店分群、回归分析、误差分析、时间序列、对照分析、特征重要性、规则迭代</td><td>门店经营复盘、选址规律、模型误差报告、指标/权重更新建议</td></tr>
+    </tbody>
+  </table>
+  <h3>面试官最可能考察的能力</h3>
+  <ul>
+    <li><b>数据能力：</b>能否把多源、不同口径的数据清洗成可分析的数据集。</li>
+    <li><b>算法理解：</b>是否知道聚类、预测、分类、排序和优化分别适合什么问题。</li>
+    <li><b>业务判断：</b>能否解释“高人流不一定等于高销量”“门店多不一定覆盖好”。</li>
+    <li><b>落地意识：</b>是否愿意实地调研、和区域团队沟通，并接受现场信息对模型结果的修正。</li>
+    <li><b>复盘意识：</b>是否能用开业后的真实经营数据检验原来的选址判断。</li>
+  </ul>
+</section>
+
+<section id="company">
+  <div class="kicker">Company context</div>
+  <h2>02｜理想汽车业务理解：为什么网络规划重要</h2>
+  <p>不要只回答“理想汽车是新能源汽车公司、产品面向家庭用户”。更重要的是理解：汽车零售网络是用户体验、品牌触达、试驾转化、交付服务和经营效率的线下基础设施。</p>
+  <div class="grid2">
+    <div class="mini"><b>产品与用户</b><p>理想汽车围绕家庭用户提供智能电动车产品与服务，产品组合包含 L 系列增程 SUV、i 系列纯电 SUV 和 MEGA 等车型。不同车型、价格带和用户场景，会影响门店展示、试驾和商圈选择。</p></div>
+    <div class="mini"><b>直营网络</b><p>直营体系使公司能更直接地管理门店服务标准、用户体验和经营数据，也意味着网络规划与门店运营复盘之间可以形成反馈闭环。</p></div>
+  </div>
+  <h3>建议记住的公开信息</h3>
+  <table>
+    <thead><tr><th>信息</th><th>公开披露内容</th><th>面试中怎么用</th></tr></thead>
+    <tbody>
+      <tr><td>截至 2026 年 10 月 31 日</td><td>全国 481 家零售中心，覆盖 159 个城市；售后维修中心及授权服务中心 527 家，覆盖 217 个城市。</td><td>说明网络已具备较大规模，岗位不只是“继续增加门店”，还涉及覆盖结构、点位质量和经营效率优化。</td></tr>
+      <tr><td>2025 年末网络</td><td>年报披露 548 家零售中心，覆盖 159 个城市；售后维修中心及授权钣喷中心 561 家，覆盖 224 个城市。</td><td>与 2026 年 10 月数据对照时，要注意统计时点、门店口径和期间调整，不要把不同日期数据混为同一时点。</td></tr>
+      <tr><td>2026 年渠道方向</td><td>管理层公开谈及更强调门店质量，新增门店优先考虑头部商场、优质汽车城；城市布局上结合低线城市覆盖情况和纯电车型发展，调整高线城市布局。</td><td>引出“从规模扩张转向精细化布局”，说明模型应兼顾增量机会、门店质量、现有覆盖和单店产出。</td></tr>
+    </tbody>
+  </table>
+  <div class="note"><b>可以这样表达你的理解：</b>“我关注到理想的销售网络已经有一定规模，所以我理解网络规划不只是回答哪里还能开店，也要回答现有网络有没有覆盖盲区、门店之间是否存在客群重叠、不同店型是否匹配商圈，以及哪些低效点位需要调整。最终目标应该是提升网络整体效率，而不是单纯追求门店数量。”</div>
+  <h3>为什么选择理想汽车？参考回答</h3>
+  <div class="script">
+    <div class="label">参考口语回答｜约 45—60 秒</div>
+    我选择理想汽车，一方面是因为新能源汽车行业仍然处于产品和渠道持续变化的阶段，门店网络需要根据车型、用户需求和城市市场变化不断调整。另一方面，我比较认同这个岗位把数据分析直接用于线下经营决策的特点。它不是分析完数据、输出一份报告就结束，而是要进一步判断城市和商圈的开发优先级，再通过实地调研和开店后的经营结果验证判断。我希望从商业分析和统计建模出发，参与这种能够真正影响业务资源配置的工作。
+  </div>
+  <div class="warn"><b>注意：</b>公开门店数量是有日期的历史截面，不要在面试中说成实时数据。若面试官追问最新经营情况，优先引用理想汽车投资者关系网站和港交所公告。</div>
+</section>
+
+<section id="intro">
+  <div class="kicker">Your story</div>
+  <h2>03｜自我介绍与求职动机</h2>
+  <h3>90 秒自我介绍</h3>
+  <div class="script">
+    <div class="label">建议版本｜突出统计建模 + AI 数据处理 + 业务落地</div>
+    您好，我本科就读于中南财经政法大学应用统计学专业，目前在香港中文大学攻读商业分析硕士，系统学习过统计分析、机器学习和数据建模，平时主要使用 Python 进行数据处理和分析。
+
+    项目方面，我做过分类、回归和聚类相关的机器学习项目，接触过特征工程、模型对比和效果评估，也做过 A/B Test 和因果分析相关项目，因此对如何利用数据识别规律、验证判断有一定基础。
+
+    实习方面，我此前在凡拓数创接触过 AI 问答系统相关的数据整理、结构化和模型测试工作；目前在 AI 产品助理方向，参与行业研究类 AI Skill 和报告模板的设计，涉及专业资料整理、信息结构化、流程拆解和生成结果检查。
+
+    我对这个岗位比较感兴趣，是因为它把数据分析和真实的线下业务决策结合起来，需要利用人口、流量、竞品和消费潜力等数据判断城市及商圈的开店价值，同时通过实地调研和门店经营结果不断验证模型。我希望发挥自己的统计和数据分析基础，逐步积累空间分析和零售网络规划方面的经验。
+  </div>
+  <h3>为什么选择网络分析专员，而不是纯 AI 产品经理？</h3>
+  <div class="script">
+    我希望从更贴近业务决策的岗位切入 AI 和数据应用。相比只关注产品功能设计，我也很希望真正参与数据分析、模型应用和业务验证的过程。这个岗位既需要算法和数据能力，也要求理解线下零售场景，最终要回答具体的经营问题，比如哪里值得开店、如何优化现有网络、如何根据门店表现调整模型。这种数据和业务结合得比较紧密的工作，是我希望深入发展的方向。
+  </div>
+  <h3>为什么你适合这个岗位？</h3>
+  <div class="script">
+    我认为自己有三方面的匹配点。第一是统计和建模基础，我本科是应用统计，硕士是商业分析，接触过机器学习、聚类、预测和模型评估。第二是数据处理能力，我有 Python 数据处理和 AI 应用相关经历，能够把不同来源的信息整理成相对统一、可分析的结构。第三是业务理解和迭代意识，我目前参与的 AI 行业研究工作，需要先理解业务问题，再把专业资料拆解成结构化信息和可复用流程，并通过样例检查输出质量。我认为这些能力可以迁移到门店网络规划的数据准备、模型分析和结果复盘中。
+  </div>
+  <h3>如果被问“你没有汽车选址经验，凭什么胜任？”</h3>
+  <div class="script">
+    我确实没有独立负责过汽车门店选址项目，因此不会把自己包装成有成熟选址经验的人。但我认为这个岗位需要的底层能力有一部分是可以迁移的：首先是把业务问题拆成可分析的指标，其次是进行数据清洗、特征构建和模型评估，最后是结合业务反馈验证模型。我过去的统计建模和 AI 数据处理经历能够支撑这些基础工作。对于汽车零售网络、商圈和空间数据的专业知识，我会通过学习业务口径、跟随实地调研和复盘已有门店案例尽快补齐。
+  </div>
+</section>
+
+<section id="match">
+  <div class="kicker">Experience mapping</div>
+  <h2>04｜你的个人经历如何匹配岗位</h2>
+  <p>面试中不要把每段经历都讲成“我做过选址”。正确方式是解释：你做过的事情训练了哪项能力，这项能力如何迁移到网络分析。</p>
+  <table>
+    <thead><tr><th>你的经历</th><th>可证明的能力</th><th>与岗位的连接</th><th>表达边界</th></tr></thead>
+    <tbody>
+      <tr><td><b>应用统计本科 + 商业分析硕士</b></td><td>统计思维、数据分析、建模、实验与结果解释</td><td>理解业务指标、建立特征、比较模型、评估预测误差</td><td>课程学习不等于生产级算法部署，讲清课程项目和个人负责部分。</td></tr>
+      <tr><td><b>机器学习课程项目</b></td><td>数据预处理、特征工程、聚类、分类/回归、模型比较</td><td>可迁移到城市分层、商圈客群识别、门店潜力预测</td><td>重点讲问题、数据、特征、模型选择依据和评估，不要只报模型名称。</td></tr>
+      <tr><td><b>凡拓数创 AI 问答相关实习</b></td><td>数据采集/清洗、文本结构化、关键词与业务指标映射、模型调用测试</td><td>对应多源数据标准化、调研信息抽取、批量分析和异常处理</td><td>区分亲自写代码、使用现有脚本、参与流程和仅了解的部分。</td></tr>
+      <tr><td><b>AI 行业研究 Skill / 报告模板</b></td><td>复杂信息拆解、指标体系、资料来源分级、结构化输出、质量检查</td><td>对应选址指标库、调研字段标准、规则沉淀和可复用分析流程</td><td>突出你实际设计和修改的章节、字段、规则，不要说成底层模型训练。</td></tr>
+      <tr><td><b>A/B Test 与因果推断项目</b></td><td>对照思维、实验设计、统计检验、区分相关性与因果性</td><td>帮助评估门店策略或网络调整是否真正带来增量效果</td><td>线下开店通常难以随机实验，需解释匹配对照、前后对比或 DID 的适用条件。</td></tr>
+    </tbody>
+  </table>
+  <h3>把你的技能翻译成岗位语言</h3>
+  <div class="grid2">
+    <div class="mini"><b>Python / Pandas / NumPy</b><p>批量读取不同来源的数据，统一字段和口径，处理缺失、重复、异常，构建可复用的数据处理流程。</p></div>
+    <div class="mini"><b>Scikit-learn / XGBoost / CatBoost</b><p>做城市/商圈分类、门店潜力预测、影响因素分析和候选点位排序。</p></div>
+    <div class="mini"><b>KMeans 聚类</b><p>根据市场规模、消费力、竞争密度和门店覆盖等特征，将城市或商圈分成不同类型。</p></div>
+    <div class="mini"><b>统计检验 / A/B Test</b><p>验证某类门店策略、商圈策略或运营动作是否与经营改善有关，避免只看简单前后变化。</p></div>
+    <div class="mini"><b>API / Prompt / AI Skill</b><p>把调研文本、图片、表格转成结构化字段，辅助信息抽取、分类和报告生成。</p></div>
+    <div class="mini"><b>Excel / PPT / 研究报告</b><p>把模型结果解释给业务团队，输出排序、证据、风险和建议，而不是只交一份代码。</p></div>
+  </div>
+  <div class="warn"><b>需要补齐但不必假装已经精通：</b>GIS/地图数据处理、地理编码、POI 数据、驾车时间圈、空间覆盖与选址优化。面试时可以说自己理解基本思路，愿意快速补充工具和业务知识；不要声称有 ArcGIS、QGIS 或空间数据库实战，除非确实使用过。</div>
+</section>
+
+<section id="workflow">
+  <div class="kicker">Core business method</div>
+  <h2>05｜门店网络规划：从城市到具体点位的完整方法</h2>
+  <p class="lead">这是本场面试最值得花时间准备的部分。建议把选址拆成三个层级：城市选择、商圈选择、具体门店点位选择。三个层级的分析粒度不同，不能混成一个总分。</p>
+  <div class="flow"><span>公司销量目标</span><i>→</i><span>城市市场潜力</span><i>→</i><span>商圈开发优先级</span><i>→</i><span>具体点位排序</span><i>→</i><span>实地核验</span><i>→</i><span>开业后复盘</span></div>
+  <h3>第一步：明确目标与约束</h3>
+  <ul>
+    <li><b>业务目标：</b>销量目标、车型上市/交付节奏、区域覆盖目标、品牌触达、试驾便利性、售后服务半径。</li>
+    <li><b>门店类型：</b>不同门店类型的展示面积、展车数量、试驾能力、服务功能和成本结构不同，不能用同一套选址标准。</li>
+    <li><b>资源约束：</b>年度开店预算、装修周期、租金、人力、场地面积、供电/停车条件、区域团队承接能力。</li>
+    <li><b>网络约束：</b>已有门店位置、覆盖范围、客群重叠、区域边界、竞品布局和未来产品结构。</li>
+  </ul>
+  <h3>第二步：建立数据底表</h3>
+  <table>
+    <thead><tr><th>数据维度</th><th>建议字段/指标</th><th>主要回答的问题</th></tr></thead>
+    <tbody>
+      <tr><td><b>人口与客群</b></td><td>常住人口、家庭户数、人口密度、年龄结构、家庭结构、就业人口、人口流入/流出</td><td>当地是否有足够的潜在消费者？家庭型用户是否集中？</td></tr>
+      <tr><td><b>消费与购车潜力</b></td><td>居民收入、消费水平、汽车保有量、新车上牌量、新能源渗透率、中高端车型销量、购车线索</td><td>有多少人买得起、愿意买、近期可能买车？</td></tr>
+      <tr><td><b>人流与交通</b></td><td>商场客流、道路车流、通勤流、停车位、公共交通、道路可达性、驾车时间</td><td>目标客群能否到达？门店是否容易被看见和进入？</td></tr>
+      <tr><td><b>商圈与物业</b></td><td>商场等级、商业面积、品牌组合、周边住宅/办公、汽车城集聚度、租金、物业条件</td><td>场地是否适合汽车展示、体验和试驾？成本是否合理？</td></tr>
+      <tr><td><b>竞品情况</b></td><td>竞品品牌、门店位置、门店类型、展车数量、距离、商圈重叠、竞品销量/热度（若可获得）</td><td>竞争强度如何？竞品集聚是否带来汽车消费目的性客流？</td></tr>
+      <tr><td><b>现有网络</b></td><td>现有门店坐标、店型、开业时间、线索、进店、试驾、订单、交付、单店产出、服务覆盖</td><td>哪里存在覆盖空白？哪里已过度密集？新店会不会分流老店？</td></tr>
+      <tr><td><b>成本与落地条件</b></td><td>租金、物业费、装修成本、人工成本、合同期限、停车/充电/施工条件</td><td>潜力能否转化为合理回报？落地是否可行？</td></tr>
+    </tbody>
+  </table>
+  <h3>第三步：数据清洗与空间标准化</h3>
+  <ol>
+    <li><b>统一时间口径：</b>尽量使用同一统计周期，例如同一年度或最近 12 个月；季节性数据需注明月份。</li>
+    <li><b>统一空间口径：</b>明确行政区、商圈、网格、POI 或门店服务半径的定义，不能把不同粒度的数据直接比较。</li>
+    <li><b>地址转坐标：</b>对商场、汽车城、竞品门店和现有门店做地理编码，检查坐标是否落在正确城市和道路附近。</li>
+    <li><b>去重与纠错：</b>同一 POI 可能存在不同名称、分店和重复记录；需结合地址、坐标和品牌进行去重。</li>
+    <li><b>缺失与异常：</b>区分真实为零、未采集和暂缺数据；异常值先核查来源，不要直接删除高客流或高销量点位。</li>
+    <li><b>数据可追溯：</b>保留来源、采集时间、统计口径、更新频率和责任方，方便现场复核。</li>
+  </ol>
+  <h3>第四步：构建选址特征</h3>
+  <table>
+    <thead><tr><th>特征组</th><th>可构建的特征</th><th>业务解释</th></tr></thead>
+    <tbody>
+      <tr><td>需求潜力</td><td>人口密度、家庭户数、收入水平、目标价格带汽车销量、新能源渗透率</td><td>潜在用户规模和购买力</td></tr>
+      <tr><td>流量质量</td><td>目标时段客流、周末/工作日客流比、汽车城到访量、停车便利度、驾车时间</td><td>不是单纯“人多”，而是目标用户是否会到、能否停留</td></tr>
+      <tr><td>竞争环境</td><td>竞品门店数量、竞品距离、竞品店型、竞品集聚程度、品牌覆盖空白</td><td>竞争压力与汽车消费目的地效应并存</td></tr>
+      <tr><td>网络协同</td><td>到现有门店驾车时间、覆盖人口增量、服务盲区、门店间客群重叠率</td><td>新店是否补足网络，而不是重复覆盖</td></tr>
+      <tr><td>经营可行性</td><td>租金/预估销量、单位面积成本、装修成本、停车和试驾条件</td><td>是否具备可持续经营的条件</td></tr>
+    </tbody>
+  </table>
+  <h3>第五步：建模与排序——不要把所有问题交给一个模型</h3>
+  <div class="grid2">
+    <div class="mini"><b>城市潜力分层</b><p>用指标体系或聚类将城市分组，识别高潜力、补覆盖、观察和暂缓进入的城市。</p></div>
+    <div class="mini"><b>商圈/点位潜力预测</b><p>用回归、随机森林、XGBoost 或 CatBoost 预测线索、进店、试驾或销量潜力。</p></div>
+    <div class="mini"><b>候选点位排序</b><p>将预测潜力、网络协同、竞品、成本和现场条件组合，输出可解释的优先级。</p></div>
+    <div class="mini"><b>网络布局优化</b><p>结合覆盖半径、驾车时间和预算，寻找能覆盖更多目标客群且减少重复覆盖的门店组合。</p></div>
+  </div>
+  <p><b>一个可解释的初始评分框架（仅为面试示例，不代表理想汽车实际权重）：</b></p>
+  <p><code>候选点位综合分 = 需求潜力分 × 权重 + 流量质量分 × 权重 + 网络补位分 × 权重 + 竞争环境分 × 权重 + 经营可行性分 × 权重</code></p>
+  <p>第一版可以用业务专家共同确认的规则权重建立 baseline，再用历史门店数据验证哪些特征真正与经营结果相关。权重不应凭个人感觉长期固定；还要设置一票否决项，例如消防、物业、停车、场地面积或合同条件不满足时，即使综合分高也不能推荐开店。</p>
+  <h3>第六步：形成业务可用的输出</h3>
+  <ul>
+    <li>城市层：城市优先级、市场规模、当前覆盖、潜在缺口、预计开发节奏。</li>
+    <li>商圈层：商圈排名、目标客群、客流质量、竞品布局、现有门店重叠情况。</li>
+    <li>点位层：候选点位排名、分项得分、现场证据、租金/落地风险、推荐理由和待核实事项。</li>
+    <li>每个推荐结果都应说明“为什么排在前面、主要依据是什么、哪些条件尚未确认”，不能只给一个黑盒分数。</li>
+  </ul>
+  <h3>第七步：开业后验证与迭代</h3>
+  <p>将预测值与门店实际经营表现对照，按开业阶段复盘，例如开业初期、爬坡期和稳定经营期。重点分析预测偏差来自哪里：数据质量、模型假设、现场条件、竞品变化、门店运营，还是产品/市场变化。</p>
+</section>
+
+<section id="data">
+  <div class="kicker">Data & metrics</div>
+  <h2>06｜数据体系与关键指标</h2>
+  <h3>必须分清三类指标</h3>
+  <table>
+    <thead><tr><th>指标类型</th><th>例子</th><th>用途</th></tr></thead>
+    <tbody>
+      <tr><td><b>市场潜力指标</b></td><td>目标客群规模、购车能力、新能源汽车渗透率、目标价格带销量、商圈有效客流</td><td>判断“这个市场值不值得进入”。</td></tr>
+      <tr><td><b>门店经营指标</b></td><td>线索量、进店量、试驾量、订单量、交付量、线索转化率、试驾转化率、单店/人均产出</td><td>判断“门店开出来后经营得怎么样”。</td></tr>
+      <tr><td><b>模型评估指标</b></td><td>MAE、RMSE、MAPE、Precision@K、Recall@K、排序命中率、覆盖率</td><td>判断“模型预测得准不准、排序有没有帮助”。</td></tr>
+    </tbody>
+  </table>
+  <h3>门店经营漏斗</h3>
+  <div class="flow"><span>潜客/线索</span><i>→</i><span>到店</span><i>→</i><span>试驾</span><i>→</i><span>下订</span><i>→</i><span>交付</span></div>
+  <ul>
+    <li><b>到店转化率：</b>到店人数 ÷ 有效线索数（需先确认公司定义的分母口径）。</li>
+    <li><b>试驾率：</b>试驾人数 ÷ 到店人数。</li>
+    <li><b>订单转化率：</b>订单数 ÷ 有效线索数或到店人数，具体取决于统一口径。</li>
+    <li><b>交付转化：</b>交付量与订单量结合看，同时考虑取消、延期和产能约束。</li>
+    <li><b>单店产出：</b>可以看交付量、订单量或贡献利润，但要考虑店型、开业时间、面积和人员规模差异。</li>
+  </ul>
+  <h3>模型评估指标怎么解释</h3>
+  <table>
+    <thead><tr><th>指标</th><th>通俗解释</th><th>适用情景</th><th>注意点</th></tr></thead>
+    <tbody>
+      <tr><td>MAE</td><td>预测值平均偏离真实值多少</td><td>预测门店线索、订单或销量</td><td>直观、受极端误差影响相对较小</td></tr>
+      <tr><td>RMSE</td><td>对较大的预测误差惩罚更重</td><td>特别关注严重低估/高估的场景</td><td>对异常值更敏感</td></tr>
+      <tr><td>MAPE</td><td>平均相对误差百分比</td><td>不同规模门店之间比较预测误差</td><td>真实值接近 0 时不稳定，不能机械使用</td></tr>
+      <tr><td>Precision@K</td><td>模型排在前 K 的点位中，真正优质的比例</td><td>每年只能实地考察或开发有限数量点位</td><td>适合评估前列候选点质量</td></tr>
+      <tr><td>Recall@K</td><td>所有优质点位中，前 K 名覆盖了多少</td><td>避免漏掉高潜力候选点</td><td>需先定义“优质点位”的标签标准</td></tr>
+      <tr><td>覆盖率/重叠率</td><td>目标客群是否被覆盖，以及新旧门店覆盖是否重复</td><td>评估网络布局</td><td>建议用驾车时间/路网，而非只用直线距离</td></tr>
+    </tbody>
+  </table>
+  <div class="note"><b>面试高分点：</b>模型准确率不是最终业务价值。即使销量预测误差降低，如果推荐的前 10 个点位没有更好的实际开店表现，模型对决策的帮助仍然有限。要同时看模型指标和业务指标。</div>
+</section>
+
+<section id="algorithm">
+  <div class="kicker">Algorithm toolkit</div>
+  <h2>07｜机器学习与空间分析知识速记</h2>
+  <table>
+    <thead><tr><th>方法</th><th>通俗解释</th><th>在岗位中的用法</th><th>面试时要讲清楚</th></tr></thead>
+    <tbody>
+      <tr><td><b>KMeans 聚类</b></td><td>按特征相似程度把城市或商圈分成几组。</td><td>城市分层、商圈类型识别、门店分群。</td><td>需要标准化数值特征；K 值要结合业务解释和轮廓系数等评估；聚类结果不是天然的“好/坏”排名。</td></tr>
+      <tr><td><b>线性/岭回归</b></td><td>估计多个因素与结果之间的关系。</td><td>建立可解释的基准预测，分析因素方向。</td><td>检查线性关系、多重共线性、残差和变量口径；相关关系不自动代表因果。</td></tr>
+      <tr><td><b>随机森林</b></td><td>组合多棵决策树，降低单棵树不稳定的问题。</td><td>预测门店潜力、识别非线性关系。</td><td>能处理复杂关系，但模型解释和外推能力需要检查。</td></tr>
+      <tr><td><b>XGBoost / CatBoost</b></td><td>逐轮修正前面模型的错误，组合多个弱模型。</td><td>中小规模结构化数据的潜力预测和排序。</td><td>注意过拟合、参数调优、时间/区域数据泄漏；CatBoost 对类别特征处理较方便。</td></tr>
+      <tr><td><b>逻辑回归</b></td><td>预测某个结果发生的概率。</td><td>预测点位是否达到开店目标、商圈是否进入候选名单。</td><td>适合二分类；要看 Precision、Recall、F1、ROC-AUC，并结合错判成本选择阈值。</td></tr>
+      <tr><td><b>空间覆盖分析</b></td><td>看一个门店在一定出行时间内能服务到哪些区域。</td><td>识别覆盖空白、门店重叠和潜在新增覆盖。</td><td>优先考虑路网驾车时间；直线距离只是近似，不能完全代表真实可达性。</td></tr>
+      <tr><td><b>选址优化</b></td><td>在预算、数量和覆盖约束下，选出一组整体最优的门店位置。</td><td>多个候选点位中选择开店组合。</td><td>可提最大覆盖模型、P-median 等思路；先定义目标函数和约束，再求解。</td></tr>
+    </tbody>
+  </table>
+  <h3>几个必须能用大白话解释的概念</h3>
+  <details class="qa"><summary>什么是特征工程？</summary><div class="answer">把原始数据转化为更能反映业务问题的信息。例如，原始数据只有某商圈人口和门店坐标，可以进一步构建目标客群密度、到现有门店的驾车时间、一定时间圈内竞品数量、周末客流占比等特征。好的特征要有业务解释，并且在预测时真实可获得。</div></details>
+  <details class="qa"><summary>为什么不能只看人流量？</summary><div class="answer">因为人流不等于购车意向。商场可能人很多，但客群年龄、消费能力、到访目的和汽车购买需求不匹配；汽车城的总人流可能小于大型商场，但到访者购车意图更强。因此要区分客流规模和客流质量，并结合购车潜力、竞品、可达性和成本判断。</div></details>
+  <details class="qa"><summary>聚类和预测有什么区别？</summary><div class="answer">聚类是在没有明确结果标签时，按相似性把对象分组，回答“这些城市/商圈有哪些类型”；预测是利用已有结果数据学习规律，回答“这个候选点未来可能有多少线索或销量”。两者可以组合使用，但不能互相替代。</div></details>
+  <details class="qa"><summary>什么是最大覆盖选址？</summary><div class="answer">假设公司最多只能开 K 家店，希望在预算和距离约束下，让尽可能多的目标用户能够在可接受的出行时间内到达至少一家门店。它关注网络整体覆盖，而不是只挑单个分数最高的点位。</div></details>
+  <details class="qa"><summary>什么是 P-median？</summary><div class="answer">在给定门店数量的情况下，选择门店位置，使需求点到最近门店的加权距离或出行成本尽量小。它更强调用户到门店的便利程度。实际应用要结合道路网络和需求权重。</div></details>
+  <details class="qa"><summary>为什么要按时间或区域划分训练集和测试集？</summary><div class="answer">随机拆分可能让同一商圈、相邻门店或相似时间的数据同时出现在训练集和测试集，模型会“提前见过”测试环境，导致评估过于乐观。若模型要预测未来新点位，可以考虑按时间留出；若要推广到新城市，可以考虑按城市/区域留出验证。</div></details>
+</section>
+
+<section id="ai">
+  <div class="kicker">AI application</div>
+  <h2>08｜AI 批量分析模型：怎么设计才真正有用</h2>
+  <p>JD 中的 AI 不一定意味着用大模型直接决定哪里开店。更合理的理解是：用传统数据算法做量化预测和排序，用 AI 提高非结构化信息处理效率，再由业务规则和人工核验保证结果可靠。</p>
+  <div class="flow"><span>Excel / POI / 地图 / 调研图片</span><i>→</i><span>OCR / LLM 信息抽取</span><i>→</i><span>字段校验与人工复核</span><i>→</i><span>空间特征库</span><i>→</i><span>预测与排序模型</span><i>→</i><span>地图/清单/报告</span><i>→</i><span>门店经营反馈</span></div>
+  <h3>AI 可以承担哪些工作？</h3>
+  <ul>
+    <li><b>调研记录结构化：</b>从现场文字、照片、商场介绍、物业资料中抽取商场名称、地址、楼层、面积、客流、租金、停车条件、竞品品牌等字段。</li>
+    <li><b>信息分类与去重辅助：</b>识别同一商场的不同名称、不同来源的重复记录，给出待核验的匹配建议。</li>
+    <li><b>异常检查：</b>发现坐标缺失、地址不完整、租金单位不一致、客流时间口径不一致等问题。</li>
+    <li><b>报告生成：</b>将模型分数、分项指标、现场证据和风险整理成标准化的商圈分析报告。</li>
+    <li><b>知识检索：</b>检索过往开店案例、调研标准和选址规则，为分析人员提供参考依据。</li>
+  </ul>
+  <h3>AI 不应该直接做什么？</h3>
+  <ul>
+    <li>不应在没有来源和验证的情况下自行补全客流、租金或竞品销量。</li>
+    <li>不应把图片中的模糊信息直接当作真实经营数据。</li>
+    <li>不应仅凭大模型的自然语言判断决定最终开店与否。</li>
+    <li>不应绕过区域负责人、物业核验和现场调研等必要流程。</li>
+  </ul>
+  <div class="script">
+    <div class="label">如果面试官问：你会怎么用 AI 提升选址效率？</div>
+    我会把流程拆成两部分。第一部分是非结构化信息处理，例如实地调研会产生大量文字记录、照片和物业资料，可以通过 OCR 和大模型先抽取商场名称、地址、客流、停车、竞品和租金等字段，再按统一的数据字典进行校验，减少人工录入和整理时间。第二部分是量化分析，清洗后的数据进入传统机器学习和空间分析流程，完成城市潜力预测、商圈排序和覆盖分析。最后输出每个点位的评分、主要依据和风险项，并保留人工复核。我认为 AI 的价值是提升资料处理和分析效率，而最终选址仍然需要数据证据与业务判断共同完成。
+  </div>
+</section>
+
+<section id="cases">
+  <div class="kicker">Case interview</div>
+  <h2>09｜核心业务案例题与参考回答</h2>
+  <details class="qa" open>
+    <summary>案例 1：如果让你负责一个省份的门店网络规划，你会怎么做？</summary>
+    <div class="answer">
+      <b>回答结构：目标 → 城市 → 商圈 → 点位 → 验证。</b>
+      <p>首先，我会明确省级销量目标、车型节奏、门店类型和预算约束。然后在城市层面，收集人口、收入、汽车保有量、新能源渗透率、目标价格带销量、竞品和现有门店覆盖等数据，筛选有市场潜力且网络存在缺口的城市。</p>
+      <p>第二，在商圈层面，结合有效客流、目标客群、汽车城或头部商场集聚、竞品分布、道路可达性和租金，构建商圈评分和优先级。第三，对具体候选点位做更细的物业、面积、停车、展示和现场可见度核验。最后将推荐结果交给区域团队实地确认，开店后持续跟踪线索、试驾、订单和交付表现，复盘预测误差并更新模型。</p>
+      <p><b>加分点：</b>不是每个高潜力城市都要立刻开店，要同时考虑已有网络覆盖、开店成本、团队承接能力和开发节奏。</p>
+    </div>
+  </details>
+  <details class="qa">
+    <summary>案例 2：有 A、B、C 三个候选点位，如何判断哪个最值得开？</summary>
+    <div class="answer">
+      我不会只比较单一客流，而会先确认三者的门店类型和目标客群是否一致，再从五方面比较：一是需求潜力，包括目标用户规模和购车能力；二是流量质量，包括有效客流、交通和停车；三是竞争环境，包括竞品数量、距离和汽车消费集聚；四是网络协同，包括现有门店覆盖和客群重叠；五是经营可行性，包括租金、面积和装修成本。可以先构建标准化评分模型，再结合历史门店数据预测经营潜力。评分靠前的点位还需要实地调研，核实数据和物业条件。最终给出排名、分项得分、关键证据和风险，而不是只说 A 分最高。
+    </div>
+  </details>
+  <details class="qa">
+    <summary>案例 3：模型预测某商圈潜力很高，但开店后销量很差，你怎么办？</summary>
+    <div class="answer">
+      我会先判断是预测问题还是经营执行问题。第一，核查输入数据是否准确，例如客流是否过期、统计口径是否一致、地址坐标是否偏移。第二，检查模型是否遗漏重要变量，例如客流质量、竞品促销、租金、停车、展车条件和现有门店分流。第三，检查开业后的运营因素，例如人员配置、试驾安排、营销活动、产品供应和交付能力。第四，比较同类门店和相近商圈，判断是否存在共同规律。最后把确认后的原因标记为数据问题、模型问题、选址问题或运营问题，只有确实属于选址预测偏差的样本才用于调整模型，避免把所有经营问题都归因于选址。
+    </div>
+  </details>
+  <details class="qa">
+    <summary>案例 4：一个商圈人流量很大，但门店转化率很低，可能是什么原因？</summary>
+    <div class="answer">
+      人流量高不代表目标购车人群多。我会从四方面排查：第一，客群质量，例如年龄、消费能力、家庭结构和到访目的；第二，门店触达，例如位置是否显眼、动线是否经过、停车是否方便；第三，体验转化，例如展车配置、试驾便利度、销售接待和线索跟进；第四，竞争环境，例如附近是否有更强的竞品门店或其他购车目的地。还要拆解漏斗，区分是“没人进店”“进店不试驾”还是“试驾后不下订”，不同环节对应不同问题。
+    </div>
+  </details>
+  <details class="qa">
+    <summary>案例 5：如何判断新店会不会抢走现有门店的客户？</summary>
+    <div class="answer">
+      我会用空间覆盖和用户来源两类数据分析。空间上，计算新旧门店的驾车时间圈和覆盖人口，识别重叠区域；经营上，观察相邻门店的线索来源、到店地址、试驾和订单变化。如果新店主要覆盖原来没有门店服务的区域，可能是增量覆盖；如果大量覆盖原店的核心客群，则需要进一步评估是否只是内部转移。可以模拟不同候选点位加入网络后的整体覆盖增量和门店间重叠变化。
+    </div>
+  </details>
+  <details class="qa">
+    <summary>案例 6：实地调研数据和线上数据不一致，你相信哪一个？</summary>
+    <div class="answer">
+      我不会简单选择其中一个，而是先确认两类数据的定义和采集时间。例如线上客流可能是商场整体月均客流，实地调研可能是某个周日下午的观察值，两者本身就不是同一口径。接下来核查来源、时间范围、采样方式和现场变化，必要时补充工作日、周末和不同时段的观察。对有明确权威来源的数据保留原始值，对现场观察值记录采样条件和可信度。最终在模型中保留来源和时间信息，不能把不同口径的数据直接混在一起。
+    </div>
+  </details>
+  <details class="qa">
+    <summary>案例 7：区域负责人认为模型推荐不合理，坚持选择另一个点位，怎么办？</summary>
+    <div class="answer">
+      我会先了解对方判断依据，是掌握了模型没有覆盖的现场信息，还是对指标权重有不同理解。然后把模型推荐的分项得分、数据来源和不确定项展示出来，请对方补充现场证据。如果确实存在模型未纳入的因素，例如物业即将调整、商场客流变化或汽车城内部资源差异，就应该更新数据或规则；如果只是经验判断不同，可以设计补充调研或小范围验证。我的目标不是证明模型一定正确，而是让数据和业务经验共同提高决策质量。
+    </div>
+  </details>
+  <details class="qa">
+    <summary>案例 8：公司给你一批杂乱的商圈调研表，时间很紧，你怎么处理？</summary>
+    <div class="answer">
+      我会先确认本次决策必须使用的字段，例如商圈名称、地址、坐标、门店类型、客流口径、竞品、租金和停车条件。然后检查缺失、重复、单位不统一和明显异常，能通过规则批量处理的先处理；涉及业务判断的字段单独列出待确认清单。对于信息不完整的点位，不直接编造或填补，而是标记可信度和待核实项。时间紧时先交付高优先级城市和商圈的可用版本，同时说明数据覆盖和风险。
+    </div>
+  </details>
+  <details class="qa">
+    <summary>案例 9：如果年度预算只能开 10 家店，怎么选？</summary>
+    <div class="answer">
+      我不会简单选择综合得分最高的 10 个点位，因为它们可能集中在同一城市或相邻商圈，造成重复覆盖。我会把问题看成组合优化：在 10 家门店和预算约束下，最大化新增目标客群覆盖或预期业务贡献，同时限制门店之间的重叠，并考虑城市布局、开店周期和落地可行性。先生成候选点位，再模拟不同组合的整体覆盖增量和成本，选出网络层面更优的组合。
+    </div>
+  </details>
+  <details class="qa">
+    <summary>案例 10：如何复盘不同类型门店的表现？</summary>
+    <div class="answer">
+      首先要分组比较，不能把不同店型、城市等级、开业时长和面积的门店直接放在一起。其次拆解经营漏斗，观察线索、到店、试驾、订单和交付，识别差异出现在什么环节。然后把门店实际表现与开店前预测的市场潜力、流量、竞品、覆盖和成本等特征对照，分析哪些因素具有解释力。最后沉淀成规则，例如某类商圈适合哪种门店形式、哪些条件是高风险项，并用后续新开门店验证规则是否稳定。
+    </div>
+  </details>
+</section>
+
+<section id="techqa">
+  <div class="kicker">Technical interview</div>
+  <h2>10｜技术知识与高频追问</h2>
+  <details class="qa"><summary>如果要预测门店未来销量，你会选择什么模型？</summary><div class="answer">我会先建立一个可解释的基准模型，例如线性回归，再尝试随机森林、XGBoost 或 CatBoost 等树模型，比较它们在验证集上的 MAE、RMSE 或 MAPE。选择模型不只看训练集表现，还要看跨时间、跨城市的泛化能力，以及预测结果是否能解释。若历史门店数量有限，复杂模型不一定更好，可以先做规则评分和简单模型，逐步积累数据。</div></details>
+  <details class="qa"><summary>样本量不大，机器学习模型怎么做？</summary><div class="answer">先控制模型复杂度，建立规则评分或线性模型作为基准；采用交叉验证或按时间/城市留出验证；减少无意义特征，做好特征筛选；可以考虑相似门店分组建模，但要防止过度切分导致样本更少。同时明确模型的不确定性，不把小样本下的排名当成绝对结论。</div></details>
+  <details class="qa"><summary>如何处理缺失值？</summary><div class="answer">先判断缺失机制和业务含义：是该区域没有该设施、数据源未覆盖，还是采集失败。数值变量可根据分布和业务逻辑采用中位数、分组填补或模型填补；类别变量可增加“未知”类别。重要的是保留缺失标记，并对关键字段缺失的点位设置人工核验或准入限制，不能把“未知”误当成“没有”。</div></details>
+  <details class="qa"><summary>如何避免模型过拟合？</summary><div class="answer">控制模型复杂度，使用交叉验证、正则化、限制树深度和叶节点样本数，避免过多特征；同时保证训练集和测试集划分符合真实使用场景。对选址问题尤其要注意同城相邻门店和同一时间段的数据泄漏。</div></details>
+  <details class="qa"><summary>如何做特征重要性分析？</summary><div class="answer">可以先看模型内置重要性，再结合 permutation importance 或 SHAP 分析特征对预测的贡献。需要注意：特征重要性说明模型使用了哪些信息，不等于该因素对销量有因果影响。对于高度相关的变量，重要性也可能被分摊或相互替代。</div></details>
+  <details class="qa"><summary>人流、人口和门店销量之间有相关性，能否说明人流导致销量提高？</summary><div class="answer">不能直接这样说。人流可能与商圈等级、消费能力、地理位置和品牌资源同时相关。要识别因果影响，需要控制混杂因素，或者利用自然实验、匹配对照、双重差分等方法。对于选址分析，先把它作为预测特征可以，但不能轻易把相关性解释为因果。</div></details>
+  <details class="qa"><summary>如何评估选址排序模型？</summary><div class="answer">如果最终只能实地考察或开发前 K 个点位，Precision@K 很重要；如果担心漏掉优质点位，也看 Recall@K。还要检查高分点位开业后的实际表现，以及模型是否在不同城市、店型和时间段都稳定。若没有足够开店样本，可以先用历史案例回测和专家复核，并持续积累真实标签。</div></details>
+  <details class="qa"><summary>直线距离和驾车时间有什么区别？为什么更推荐后者？</summary><div class="answer">直线距离只代表两点几何距离，无法体现河流、高速路、道路方向、拥堵和入口位置。用户去门店通常通过真实道路出行，因此驾车时间或路网可达性通常更贴近体验。若暂时没有路网数据，可以用直线距离做初筛，但要明确它只是近似。</div></details>
+  <details class="qa"><summary>门店开业后，怎么判断选址模型是否有效？</summary><div class="answer">先比较开业前预测和开业后的实际线索、到店、试驾、订单、交付等指标；再按店型、城市和开业阶段分组，检查预测误差是否有系统性偏差。还要区分选址和运营因素，不能把人员不足、活动执行或产品供应问题都算成模型错误。最终看模型是否让高优先级点位更容易成为高质量门店。</div></details>
+  <details class="qa"><summary>你会用什么工具完成这些工作？</summary><div class="answer">数据处理可以用 Python 的 Pandas、NumPy；建模可以用 Scikit-learn、XGBoost 或 CatBoost；数据查询和汇总需要 SQL；可视化可用 Python、Excel 或 BI 工具。如果涉及空间分析，还需要学习 GIS 工具、地理编码、POI 和路网数据处理。工具选择应服务于数据规模和业务流程，而不是为了使用工具而使用。</div></details>
+</section>
+
+<section id="resume">
+  <div class="kicker">Resume deep dive</div>
+  <h2>11｜简历深挖：建议重点准备的四段经历</h2>
+  <h3>A. 机器学习课程项目——最适合证明算法基础</h3>
+  <p><b>回答顺序：</b>项目目标 → 数据与标签 → 数据预处理 → 特征工程 → 模型选择 → 评估方式 → 你的贡献 → 局限。</p>
+  <div class="script">
+    <div class="label">参考回答骨架｜按你实际项目补充</div>
+    在机器学习课程项目中，我们需要根据给定数据完成预测任务。我主要参与了数据预处理、特征构建和模型比较。开始时先检查缺失值、异常值和变量分布，再根据业务含义构建特征，并尝试不同模型进行比较。模型选择时，我不只看训练集结果，而是结合交叉验证和对应任务的评估指标判断泛化表现。这个项目让我熟悉了从原始数据到模型评估的完整流程。迁移到网络分析岗位，我认为类似的方法可以用于构建商圈特征、预测门店潜力，并通过真实门店表现持续验证模型。
+  </div>
+  <p><b>必须能回答的追问：</b></p>
+  <ul>
+    <li>项目到底预测什么？目标变量是什么？数据规模和样本单位是什么？</li>
+    <li>你本人具体负责哪部分？哪些工作是队友完成的？</li>
+    <li>为什么选择这些模型？模型之间表现有什么差异？</li>
+    <li>如何处理缺失值、类别变量、数据不平衡和异常值？</li>
+    <li>如何划分训练集和测试集？有没有交叉验证？</li>
+    <li>如果模型表现很好，如何判断是否过拟合或数据泄漏？</li>
+    <li>如果把项目迁移到选址，目标变量、特征和评估指标会怎么改？</li>
+  </ul>
+  <div class="note"><b>迁移回答：</b>如果要预测门店潜力，我会把样本单位从个人/订单改成候选商圈或门店，把目标变量改成开业后一定时期内的线索、试驾、订单或交付表现，再用人口、购买力、客流、竞品、网络覆盖和成本等构建特征。</div>
+
+  <h3>B. A/B Test 与因果推断项目——最适合证明验证能力</h3>
+  <div class="script">
+    <div class="label">参考回答骨架</div>
+    我做过 A/B Test 和因果推断相关的课程项目，核心是先明确要验证的业务问题，再设计对照方式和结果指标，分析不同组之间的差异，并判断观察到的差异是否具有统计意义。这个经历让我意识到，业务决策不能只看简单的前后变化，也要考虑样本差异和其他因素的影响。对于门店网络调整，如果要评估新增门店或商圈调整的效果，可以考虑选择相似区域作为对照，结合调整前后的变化进行分析；如果条件允许，也可以采用双重差分等方法，但需要检查平行趋势等前提。
+  </div>
+  <p><b>可能追问：</b>什么是显著性？置信区间怎么解释？为什么不能随便比较开店前后销量？什么情况下可以用双重差分？如果不能随机分配门店位置，如何尽量降低选择偏差？</p>
+
+  <h3>C. 凡拓数创 AI 问答相关实习——最适合证明数据处理与批量测试</h3>
+  <div class="script">
+    <div class="label">表达建议｜只讲真实参与环节</div>
+    我此前在凡拓数创接触过 AI 问答系统相关工作，主要涉及业务资料和问答数据的整理、结构化，以及模型问答效果测试等环节。我的理解是，模型应用的效果不仅取决于模型本身，也取决于输入数据是否规范、业务知识是否准确，以及测试样本能否覆盖真实问题。这个经历与岗位中的调研信息结构化、批量数据处理和 AI 分析流程有一定共通性。
+  </div>
+  <p><b>如果简历出现 10000+ Q&A、5000+ 测试集等数字，务必准备：</b>数据从哪里来、每条记录有哪些字段、去重方式、标准答案如何确认、测试集如何抽样、你本人做了什么、模型调用遇到什么异常、是否有真实的前后效果对比。无法确认的部分不要编造。</p>
+
+  <h3>D. AI 行业研究 Skill / 报告模板——最适合证明结构化和业务理解</h3>
+  <div class="script">
+    <div class="label">参考回答骨架</div>
+    我目前的 AI 产品助理实习主要参与行业研究类 Skill 和报告模板的设计。工作中需要先理解分析任务，再把复杂的行业信息拆成章节、指标和数据字段，整理参考资料和来源要求，并根据样例输出检查结构和内容质量。这个经历让我形成了把非结构化信息转成标准化分析框架的习惯。我认为这可以迁移到网络规划中，例如建立统一的商圈调研字段、门店评价指标和选址规则，让不同城市的数据能够被比较和复用。
+  </div>
+  <p><b>可能追问：</b>你具体设计了什么字段？如何判断来源可靠？如何发现 AI 输出不准确？遇到业务口径变化如何更新模板？如何让不同人员使用同一套标准？</p>
+</section>
+
+<section id="behavior">
+  <div class="kicker">Behavioral interview</div>
+  <h2>12｜行为面试：STAR 素材与回答方向</h2>
+  <p>行为题不要把自己包装成“所有事情都做得很好”。重点是具体情境、本人行动、结果和复盘。每个故事控制在 1—2 分钟。</p>
+  <table>
+    <thead><tr><th>问题</th><th>建议使用的真实素材</th><th>重点表达</th></tr></thead>
+    <tbody>
+      <tr><td>遇到过最大的困难？</td><td>行业研究 Skill / 报告模板多轮迭代</td><td>如何拆解复杂要求、识别输出问题、逐轮修改和验证。</td></tr>
+      <tr><td>如何处理紧急任务？</td><td>实习中紧急的数据源分级整理或多任务并行</td><td>先确认交付口径，按影响和截止时间排序，及时同步风险。</td></tr>
+      <tr><td>团队合作经历？</td><td>机器学习课程项目或跨角色协作</td><td>明确分工、统一数据口径、同步进度、处理分歧。</td></tr>
+      <tr><td>如何说服他人？</td><td>A/B Test、模型比较或数据分析项目</td><td>用数据和对照结果支持判断，不只是表达观点。</td></tr>
+      <tr><td>快速学习新知识？</td><td>学习模型 API、行业知识或新的报告分析方法</td><td>明确目标、拆分知识点、最小测试、应用到交付。</td></tr>
+      <tr><td>面对重复工作怎么看？</td><td>数据清洗、资料整理、标准化模板工作</td><td>先保证质量，再识别可自动化环节；不轻视基础工作。</td></tr>
+      <tr><td>和业务人员意见不一致？</td><td>报告结构、指标口径或 Skill 输出标准讨论</td><td>先理解对方目标，再把分歧转成指标、样例和证据比较。</td></tr>
+    </tbody>
+  </table>
+  <h3>可直接套用的 STAR 结构</h3>
+  <div class="grid2">
+    <div class="mini"><b>S｜Situation 背景</b><p>当时是什么项目？为什么需要做？业务或团队面临什么问题？</p></div>
+    <div class="mini"><b>T｜Task 任务</b><p>你本人负责什么？交付标准和时间要求是什么？</p></div>
+    <div class="mini"><b>A｜Action 行动</b><p>你具体做了哪几步？如何分析、沟通、调整和验证？这是最重要的部分。</p></div>
+    <div class="mini"><b>R｜Result 结果</b><p>最后交付了什么？问题解决到什么程度？你学到了什么？没有量化结果也可以讲可验证的交付。</p></div>
+  </div>
+  <h3>出差与实地调研怎么回答</h3>
+  <div class="script">
+    我理解这个岗位的分析对象是线下门店和商圈，所以实地调研不是额外的工作，而是验证数据和模型的重要环节。线上数据能够帮助我们筛选候选点位，但现场的动线、可见度、停车、物业条件和真实客流，很多时候需要到现场确认。我愿意配合岗位需要的出差和调研安排，也希望通过现场观察更快理解业务。具体出差频率和区域安排，我也希望进一步了解。
+  </div>
+</section>
+
+<section id="questions">
+  <div class="kicker">Question bank</div>
+  <h2>13｜高频面试问题清单</h2>
+  <p class="small">建议优先练习标记为“重点”的问题。点击问题可展开简要答题方向。</p>
+  <details class="qa"><summary>重点｜你如何理解网络分析专员这个岗位？</summary><div class="answer">从城市、商圈、点位三个层级解释；强调算法批量分析、实地调研、门店复盘和模型迭代的闭环。</div></details>
+  <details class="qa"><summary>重点｜如果让你搭建一个选址模型，你会怎么做？</summary><div class="answer">明确目标和约束、整理多源数据、清洗空间信息、构建特征、建立 baseline、预测/排序、现场验证、开业后回测。</div></details>
+  <details class="qa"><summary>重点｜人口、流量、竞品、消费潜力，你认为哪个最重要？</summary><div class="answer">没有固定的单一最重要因素，要看店型和城市。需求潜力决定市场基础，流量决定触达，竞品决定竞争与集聚，网络覆盖决定新增价值，成本决定可行性。需要用历史数据和业务目标验证权重。</div></details>
+  <details class="qa"><summary>重点｜你最熟悉的机器学习算法是什么？</summary><div class="answer">选自己真正做过的 1—2 种模型，讲清楚适用问题、输入特征、训练评估和局限。不要罗列所有算法。</div></details>
+  <details class="qa"><summary>重点｜如果业务方质疑模型结果，你怎么办？</summary><div class="answer">展示分项依据、核查数据口径、收集现场新信息、必要时补充变量或调整规则，并保留模型与人工判断的差异记录。</div></details>
+  <details class="qa"><summary>你了解哪些新能源汽车品牌和竞品？</summary><div class="answer">建议按目标价格带、车型类别、家庭场景和能源形式比较，不必背大量品牌。可以说明竞品分析不仅看品牌数量，也看门店类型、位置、展车、客群和商圈集聚。</div></details>
+  <details class="qa"><summary>你对汽车零售门店有哪些认识？</summary><div class="answer">可以从商场展示触达、汽车城购车目的性客流、中心店的展车/试驾能力、服务中心的售后可达性等维度回答；具体门店分类要以公司内部口径为准。</div></details>
+  <details class="qa"><summary>你能接受偏执行的数据整理和现场调研吗？</summary><div class="answer">强调数据底层质量决定模型质量，愿意从数据核验、调研和标准化工作做起，并在熟悉业务后推动自动化和规则沉淀。</div></details>
+  <details class="qa"><summary>你的 SQL 水平如何？</summary><div class="answer">如实说明目前掌握程度。可以说熟悉基础查询、筛选、聚合和多表关联的使用场景，正在加强复杂查询、窗口函数和业务数据分析能力。不要声称精通。</div></details>
+  <details class="qa"><summary>你的职业规划是什么？</summary><div class="answer">短期掌握门店网络业务、数据口径和模型流程；中期独立负责某个区域或某类网络分析专题；长期成长为能够把数据模型、空间分析和线下经营决策结合起来的业务分析人才。</div></details>
+  <details class="qa"><summary>你的优势和不足是什么？</summary><div class="answer">优势可以讲统计建模基础、结构化信息能力和 AI 应用经验；不足可讲空间数据/GIS 的实战经验需要补齐，并说明具体学习路径。</div></details>
+  <details class="qa"><summary>如果发现数据不支持业务方想要的结论，你会怎么办？</summary><div class="answer">坚持数据口径和证据，不为了迎合结论调整结果；同时解释限制、补充分析和提出可验证的下一步方案。</div></details>
+</section>
+
+<section id="ask">
+  <div class="kicker">Ask the interviewer</div>
+  <h2>14｜面试反问：建议准备 4—5 个</h2>
+  <ol>
+    <li>目前团队的网络规划是以城市拓展、商圈开发还是具体门店点位评估为主要工作重心？三者在日常工作中的占比大概如何？</li>
+    <li>JD 中提到的“三端门店”具体指哪三类门店？不同门店类型是否会采用不同的选址指标和评估模型？</li>
+    <li>团队目前的数据基础主要有哪些？人口、客流、竞品、门店经营和空间数据是否已经形成统一的数据底表？</li>
+    <li>目前 AI 批量分析模型主要应用在哪些环节？更多是非结构化调研资料抽取，还是商圈潜力预测、点位排序和网络优化？</li>
+    <li>岗位入职后的前三个月，最希望新人优先完成哪些工作？是数据治理、模型搭建、实地调研还是区域网络复盘？</li>
+    <li>团队如何衡量网络分析工作的成果？更关注模型预测精度、优质点位命中率、门店开业后的经营表现，还是整体网络覆盖效率？</li>
+  </ol>
+  <div class="good"><b>最推荐优先问：</b>“三端门店”具体指什么，以及团队如何定义网络分析模型的效果。前者可以避免误解业务口径，后者能帮助你判断岗位是偏算法、偏数据运营还是偏线下拓展支持。</div>
+</section>
+
+<section id="check">
+  <div class="kicker">Final checklist</div>
+  <h2>15｜面试前最后检查清单</h2>
+  <div class="checklist" id="checklist">
+    <label><input type="checkbox"><span>能在 90 秒内讲清楚自我介绍，并自然连接统计学、机器学习和 AI 数据处理经历。</span></label>
+    <label><input type="checkbox"><span>能用自己的话解释城市规划、商圈优先级和具体点位排序的区别。</span></label>
+    <label><input type="checkbox"><span>能列出人口、消费潜力、客流、竞品、现有网络和成本等核心数据字段。</span></label>
+    <label><input type="checkbox"><span>能解释 KMeans、回归、随机森林/XGBoost、空间覆盖和选址优化各自解决什么问题。</span></label>
+    <label><input type="checkbox"><span>能解释 MAE、RMSE、MAPE、Precision@K、Recall@K 的含义和适用场景。</span></label>
+    <label><input type="checkbox"><span>能讲清楚线上数据与现场调研不一致时如何核验。</span></label>
+    <label><input type="checkbox"><span>能回答预测高潜力但开业后表现差、门店之间客群重叠等案例题。</span></label>
+    <label><input type="checkbox"><span>准备好机器学习课程项目的目标变量、数据、特征、模型、评估和个人贡献。</span></label>
+    <label><input type="checkbox"><span>准备好 A/B Test/因果推断项目如何迁移到门店策略评估。</span></label>
+    <label><input type="checkbox"><span>凡拓实习中的数字、数据来源、本人负责范围和实际操作细节均能经得起追问。</span></label>
+    <label><input type="checkbox"><span>能坦诚说明 GIS/空间数据实战经验的边界，不虚构工具熟练度。</span></label>
+    <label><input type="checkbox"><span>了解理想汽车近期门店网络公开信息，并注意每个数字的统计日期。</span></label>
+    <label><input type="checkbox"><span>准备好出差、实地调研、跨部门沟通和重复性数据核验相关问题。</span></label>
+    <label><input type="checkbox"><span>准备 3 个行为面试故事，每个故事都能讲清楚本人行动和结果。</span></label>
+    <label><input type="checkbox"><span>准备至少 3 个反问，尤其是“三端门店”的具体定义和模型效果指标。</span></label>
+  </div>
+  <hr>
+  <h3>最后记住的核心表达</h3>
+  <div class="callout"><b>不要把自己讲成“会很多算法的人”。要把自己讲成“能够把业务问题拆成数据问题、用合适的方法分析、再用真实经营结果验证判断的人”。</b></div>
+  <p>如果面试时遇到不熟悉的算法或空间分析工具，不要硬编。可以先说明自己理解的业务目标和分析思路，再说需要补充的数据、方法和验证步骤。对这个岗位而言，逻辑清楚、口径严谨、能落地，比堆砌术语更重要。</p>
+</section>
+
+
+<section id="role-deep">
+  <div class="kicker">Role in the organization & industry</div>
+  <h2>深度补充 A｜网络分析专员在公司和汽车行业中的定位</h2>
+  <p class="lead"><b>从 JD 推断，这个岗位更接近“销售网络规划 / 渠道策略分析 / 零售网络商业分析”的交叉岗位。</b>它分析的不是单一门店的日常销售，而是整个线下网络：城市怎么覆盖、门店放在哪里、不同店型如何配置、网络是否重复建设，以及新店能否带来真正的增量。</p>
+  <div class="callout"><b>组织归属说明：</b>理想汽车没有在这份 JD 中披露该岗位的准确汇报部门、内部系统和组织架构。以下是根据职责推断的岗位定位，不应当当作公司内部组织图来背诵。</div>
+  <h3>1. 在公司内部：处于销售网络决策链条中间</h3>
+  <div class="flow"><span>公司销量 / 区域目标</span><i>→</i><span>网络规划与分析</span><i>→</i><span>区域拓展与实地调研</span><i>→</i><span>选址决策 / 开店落地</span><i>→</i><span>门店运营复盘</span></div>
+  <p>这个岗位一端连接总部经营目标和网络策略，另一端连接区域团队的真实市场情况。分析人员需要把总部提出的“今年要覆盖哪些市场、提升什么指标”转成具体城市和商圈优先级；也要把区域团队在现场看到的物业、客流、竞品和经营问题重新反馈到数据系统和模型里。</p>
+  <table>
+    <thead><tr><th>协作对象</th><th>对方关注什么</th><th>网络分析专员提供什么</th></tr></thead>
+    <tbody>
+      <tr><td>销售战略 / 销售管理</td><td>年度销量目标、区域分解、网络效率、资源投放</td><td>城市机会评估、网络覆盖缺口、门店布局建议、区域优先级</td></tr>
+      <tr><td>区域销售 / 城市团队</td><td>当地客群、竞品、物业资源、门店经营和落地难点</td><td>候选商圈清单、点位评分、调研任务、数据核验和分析支持</td></tr>
+      <tr><td>渠道拓展 / 选址开发</td><td>物业资源、租金谈判、开店周期、面积和场地要求</td><td>市场潜力依据、候选点位排序、投资与覆盖分析</td></tr>
+      <tr><td>门店运营 / 零售运营</td><td>线索、到店、试驾、订单、交付和单店效率</td><td>开业前预测与开业后表现对照、异常门店分析、规则复盘</td></tr>
+      <tr><td>财务 / 投资管理</td><td>租金、装修、人力、投资回收和预算</td><td>预期产出、成本效率、不同开店方案的投入产出比较</td></tr>
+      <tr><td>数据 / 算法 / IT</td><td>数据接入、模型、系统、自动化和数据权限</td><td>业务定义、字段口径、建模需求、模型验收标准和反馈样本</td></tr>
+    </tbody>
+  </table>
+  <h3>2. 在汽车行业：网络分析不是简单的“找铺位”</h3>
+  <table>
+    <thead><tr><th>岗位类型</th><th>主要问题</th><th>和网络分析的区别</th></tr></thead>
+    <tbody>
+      <tr><td>网络分析 / 网络规划</td><td>哪里应该布局、布局多少、如何组合、效果如何</td><td>偏数据分析、空间规划、模型排序和网络整体效率。</td></tr>
+      <tr><td>渠道拓展 / 选址开发</td><td>具体物业能否拿到、租金是否合理、如何签约开店</td><td>偏资源获取、商务谈判、物业与项目落地。</td></tr>
+      <tr><td>门店运营</td><td>已经开业的店如何提高线索、试驾、订单和交付</td><td>偏门店日常经营和销售转化；其数据是网络分析的重要反馈。</td></tr>
+      <tr><td>商业分析 / BI</td><td>业务表现如何、哪些指标异常、原因是什么</td><td>范围通常更广；网络分析更聚焦地理空间和线下网点配置。</td></tr>
+      <tr><td>算法工程师</td><td>模型如何训练、部署、优化性能</td><td>网络分析专员更需要定义业务目标、组织数据、解释结果并推动决策。</td></tr>
+    </tbody>
+  </table>
+  <h3>3. 为什么汽车零售网络比普通门店选址复杂？</h3>
+  <ul>
+    <li><b>客单价高、决策周期长：</b>汽车消费涉及家庭共同决策、反复比较、到店体验和试驾，不能只用即时客流衡量商圈价值。</li>
+    <li><b>门店承担体验功能：</b>用户可能先在线上了解，再到店看车、体验智能座舱、试驾；门店位置会影响品牌触达和体验转化。</li>
+    <li><b>网络包含多种节点：</b>零售中心、交付相关设施、售后维修中心、授权服务网点和超充网络承担不同任务，不能用一套指标衡量所有网点。</li>
+    <li><b>产品结构会改变网络需求：</b>增程车型和纯电车型的补能场景不同，纯电产品占比变化可能提高高线城市体验密度和充电网络协同的重要性。</li>
+    <li><b>新店可能分流老店：</b>新店不是独立项目，需要评估它带来的新增覆盖和对现有门店的客群转移。</li>
+  </ul>
+  <h3>4. “三端门店”是一个需要确认的内部口径</h3>
+  <div class="warn">JD 提到“对三端门店进行多维度复盘”，但公开资料无法确认“三端”具体指哪三类门店。不要自行猜成商场店、汽车城店或其他类型。面试时可以问：“JD 中提到的三端门店，具体是指哪三类业务终端？不同终端的选址逻辑和复盘指标是否会有差异？”</div>
+  <h3>5. 面试官问：你认为这个岗位在公司里的价值是什么？</h3>
+  <div class="script">
+    我理解这个岗位的价值，是把过去比较依赖区域经验和人工资料整理的网络规划工作，逐步转成数据驱动、可批量分析、可以持续验证的决策流程。它既不是单纯做数据报表，也不是只负责找物业，而是连接市场分析、区域拓展和门店经营复盘。前期通过数据帮助公司识别值得进入的城市和商圈，中间通过现场调研验证点位是否可行，开业后再用真实经营数据检验之前的判断。这样做的最终价值，是提高优质点位命中率，减少低效开店和网络重复覆盖，让门店数量、覆盖质量和经营效率之间取得平衡。
+  </div>
+</section>
+
+<section id="daily-deep">
+  <div class="kicker">Day-to-day operating rhythm</div>
+  <h2>深度补充 B｜从 JD 拆到每天：这个岗位具体会做什么</h2>
+  <p class="lead">JD 写的是三类职责，但日常工作通常会在数据处理、分析建模、业务沟通、实地调研和结果复盘之间切换。以下是根据 JD 推演的典型工作流，并非理想汽车内部已公开的标准排班。</p>
+  <h3>1. JD 每项职责对应的日常动作</h3>
+  <table>
+    <thead><tr><th>JD 职责</th><th>日常动作</th><th>具体操作</th><th>交付结果</th></tr></thead>
+    <tbody>
+      <tr><td>AI 批量分析与网络规划</td><td>目标拆解、数据准备、模型分析</td><td>接收区域/城市目标；拉取人口、汽车市场、商圈 POI、竞品和门店数据；统一字段、空间与时间口径；运行评分或预测脚本。</td><td>城市潜力分层表、商圈候选池、点位初始排名、数据质量问题清单。</td></tr>
+      <tr><td>输出省份/城市网络规划</td><td>区域市场机会评估</td><td>对比城市市场规模、目标客群、当前覆盖、竞争强度和开店成本；识别覆盖空白与过度密集区域。</td><td>城市进入顺序、网络覆盖图、开店节奏建议。</td></tr>
+      <tr><td>商圈实地调研与结构化</td><td>调研准备、现场采集、资料录入</td><td>提前生成调研表；现场核对位置、动线、可见度、客流、停车、物业、竞品和租金；照片/文字记录后转成统一字段。</td><td>结构化调研表、坐标与现场照片、待确认事项、现场风险。</td></tr>
+      <tr><td>动态优化选址优先级</td><td>数据回填和候选点重排</td><td>把现场新信息回填数据库；校正线上客流、物业信息和竞品信息；重新计算点位分数并记录变化原因。</td><td>更新后的候选点排名、优先级变化说明。</td></tr>
+      <tr><td>AI 模型校正预测结果</td><td>预测与实际对照</td><td>比较模型估计与现场核验结果、开业后线索/进店/试驾/订单；检查偏差来源；判断是否需要补充特征或修改规则。</td><td>模型误差分析、规则迭代建议、回归测试结果。</td></tr>
+      <tr><td>三端门店多维度复盘</td><td>门店经营分析</td><td>按店型、城市等级、开业时长、面积等分组；拆解线索—到店—试驾—订单—交付漏斗；对比选址预测与经营结果。</td><td>门店分层复盘、优秀/低效案例、影响因素分析。</td></tr>
+    </tbody>
+  </table>
+  <h3>2. 一个典型工作日可能怎么安排</h3>
+  <table>
+    <thead><tr><th>时间</th><th>可能做的事</th><th>工作重点</th></tr></thead>
+    <tbody>
+      <tr><td>09:00—09:30</td><td>查看网络与门店经营数据更新</td><td>检查新增门店、候选点位状态、区域目标进度、门店指标异常和数据刷新情况。</td></tr>
+      <tr><td>09:30—10:30</td><td>数据质量检查</td><td>核对城市/商圈字段、门店地址、POI 去重、客流时间口径、竞品坐标、缺失值和异常值。</td></tr>
+      <tr><td>10:30—12:00</td><td>专题分析或模型运行</td><td>运行城市潜力评分、商圈候选排序、空间覆盖测算；查看分项得分与上次版本差异。</td></tr>
+      <tr><td>13:00—14:00</td><td>与区域或拓展团队对齐</td><td>确认当地市场信息、物业进度、现场调研安排和业务规则；处理模型与业务经验不一致的地方。</td></tr>
+      <tr><td>14:00—16:00</td><td>实地调研或候选点核验</td><td>根据项目进度走访商场/汽车城，观察动线、客流、停车、可见度、竞品和周边环境。</td></tr>
+      <tr><td>16:00—17:00</td><td>调研数据回填与结果更新</td><td>整理照片和记录，补充字段、坐标、来源和核验状态；更新候选点优先级。</td></tr>
+      <tr><td>17:00—18:00</td><td>输出结论与跟进清单</td><td>更新分析表、地图和报告，记录决策依据、待确认事项、风险和下一步负责人。</td></tr>
+    </tbody>
+  </table>
+  <p class="small">现场调研日、集中建模日和跨部门评审日的安排会不同；以上是为了帮助你把 JD 想象成具体工作，而不是承诺每天都会按这个时间表执行。</p>
+  <h3>3. 周度、月度和项目周期的工作节奏</h3>
+  <div class="grid3">
+    <div class="mini"><b>每天</b><p>数据更新与核验；处理候选点和门店异常；跟进区域反馈；维护选址数据库。</p></div>
+    <div class="mini"><b>每周</b><p>候选城市/商圈排序评审；现场调研计划；区域拓展进度；重点点位复核和数据问题协调。</p></div>
+    <div class="mini"><b>每月/季度</b><p>网络覆盖复盘；门店分层和经营分析；预测误差回测；模型特征、规则和指标体系更新。</p></div>
+  </div>
+  <h3>4. 一个选址项目从头到尾怎么走</h3>
+  <ol>
+    <li><b>接到需求：</b>例如某省需要制定下一年度网络规划。先确认销量目标、计划开店数量、门店类型、时间节点和预算限制。</li>
+    <li><b>定义分析口径：</b>确定城市、商圈和点位的空间边界；确定潜力目标是线索、到店、试驾还是交付；确定使用哪段历史数据。</li>
+    <li><b>数据接入：</b>整理人口、收入、汽车市场、客流、竞品、商圈 POI、现有门店和租金等数据。</li>
+    <li><b>数据清洗：</b>统一地址和坐标，去重，检查缺失和异常，标注来源与时间，建立可追溯数据底表。</li>
+    <li><b>初筛和建模：</b>先排除不满足硬条件的区域，再做城市分层、商圈评分、门店潜力预测和空间覆盖分析。</li>
+    <li><b>业务评审：</b>将候选名单、分项评分、预测依据和风险交给区域/拓展团队，收集一线经验和新增信息。</li>
+    <li><b>实地核验：</b>对重点点位核对现场客流、物业、停车、动线、竞品和展示条件，回填数据库。</li>
+    <li><b>决策与落地：</b>形成建议顺序和候选方案，最终开店决策还需结合公司审批、租赁和工程条件。</li>
+    <li><b>开业后复盘：</b>按开业阶段比较预测与实际经营表现，区分选址、运营、产品和市场因素，更新模型。</li>
+  </ol>
+  <h3>5. 面试官问：你认为入职后每天主要做什么？</h3>
+  <div class="script">
+    我理解日常工作不会只有建模，应该是数据和业务结合的。一部分时间会用于维护和分析基础数据，比如人口、客流、竞品、商圈和门店经营数据，检查字段、时间和空间口径；另一部分会围绕具体区域的开发需求，运行模型或评分规则，筛选城市和商圈，形成候选点位排序。对于重点点位，还需要和区域团队一起调研，核实现场客流、动线、停车和物业条件。开店后则要跟踪线索、到店、试驾和订单等经营指标，分析预测和实际之间的差异。我认为日常工作的核心是持续维护一套可信的数据底表，并让分析结果真正进入选址和复盘流程。
+  </div>
+</section>
+
+<section id="company-deep">
+  <div class="kicker">Company & business context</div>
+  <h2>深度补充 C｜理想汽车基本情况、财务表现、新品与门店策略</h2>
+  <h3>1. 公司基本介绍</h3>
+  <p>理想汽车（Li Auto Inc.，港股代码 2015、纳斯达克代码 LI）是一家设计、研发、制造和销售豪华智能电动汽车的中国汽车企业。公司于 2019 年 11 月开始量产，面向家庭用户提供汽车产品和服务。它较早将增程式电动车商业化，同时持续发展纯电动平台。</p>
+  <table>
+    <thead><tr><th>产品/技术线</th><th>定位与特点</th><th>对网络规划的影响</th></tr></thead>
+    <tbody>
+      <tr><td><b>L 系列增程 SUV</b></td><td>以家庭 SUV 为核心，覆盖不同尺寸和价格带；增程路线兼顾日常纯电出行与长途补能便利。</td><td>关注家庭客群、城市购买力、试驾体验、停车和展示空间；用户对补能焦虑的敏感度相对不同。</td></tr>
+      <tr><td><b>i 系列纯电 SUV</b></td><td>纯电产品线，拓宽产品覆盖范围，面向更广泛的纯电 SUV 需求。</td><td>高线城市用户密度、充电设施、超充网络和纯电体验可能更重要；门店布局要与补能网络协同考虑。</td></tr>
+      <tr><td><b>MEGA 纯电 MPV</b></td><td>家庭科技旗舰 MPV，强调空间、舒适和家庭出行体验。</td><td>关注高购买力家庭客群、体验空间、商圈形象和试驾/交付体验。</td></tr>
+      <tr><td><b>智能化与电动技术</b></td><td>持续投入智能驾驶、智能座舱、芯片、电池、电驱和补能体系。</td><td>产品技术变化会影响用户关注点、试驾体验、充电网络需求和门店展示内容。</td></tr>
+    </tbody>
+  </table>
+  <h3>2. 营收与经营情况：面试要会读数字，更要会解释</h3>
+  <p class="tagline">金额单位：人民币亿元；财务数据按公司已发布财报，交付与门店数据按公告披露时点。</p>
+  <table>
+    <thead><tr><th>期间</th><th>总收入</th><th>汽车销售收入</th><th>交付量</th><th>毛利率 / 车辆毛利率</th><th>值得注意的变化</th></tr></thead>
+    <tbody>
+      <tr><td><b>2025 全年</b></td><td>1,123<br><span class="small">同比 -22.3%</span></td><td>1,067<br><span class="small">同比 -23.0%</span></td><td>406,343 辆<br><span class="small">2024 年为 500,508 辆</span></td><td>18.7% / 17.9%</td><td>净利润约 11 亿元，同比下降 85.8%；经营利润转为约 5.21 亿元亏损。</td></tr>
+      <tr><td><b>2026 Q1</b></td><td>230<br><span class="small">同比 -11.4%</span></td><td>215</td><td>95,142 辆<br><span class="small">同比 +2.5%</span></td><td>7.9% / 6.1%</td><td>收入、毛利率承压；净亏损约 23 亿元。</td></tr>
+      <tr><td><b>2026 Q2</b></td><td>257<br><span class="small">同比 -15.1%</span></td><td>241<br><span class="small">同比 -16.7%</span></td><td>98,330 辆<br><span class="small">同比 -11.5%</span></td><td>11.0% / 9.4%</td><td>环比收入和毛利率改善，但同比仍承压；净亏损约 17 亿元。</td></tr>
+      <tr><td><b>2026 年 10 月</b></td><td>月度财报未披露</td><td>—</td><td>29,025 辆</td><td>—</td><td>累计交付 1,862,676 辆；这是交付公告，不是季度营收数据。</td></tr>
+    </tbody>
+  </table>
+  <p>2025 年总收入同比下降，主要与车辆交付量减少有关；2026 年上半年收入同比仍有压力，车辆毛利率明显低于 2025 年同期，但 Q2 较 Q1 有所回升。面试时不要只说“理想经营很好”，也不要简单说“公司经营不好”。更准确的表达是：公司在产品和渠道调整期，收入、交付和毛利率承压，同时仍在推进新产品、纯电布局和技术投入，网络规划需要更关注单店质量、投入产出和网络效率。</p>
+  <div class="note"><b>数据时点：</b>截至 2026 年 11 月 16 日，Q3 财报尚未发布。公司公告计划于 2026 年 11 月 25 日发布第三季度业绩。不要把 Q3 交付预期或市场预测当作已实现营收。</div>
+  <h3>3. 2026 年主要新品发布节奏</h3>
+  <table>
+    <thead><tr><th>时间</th><th>产品/发布</th><th>已披露信息</th><th>对网络分析可能意味着什么</th></tr></thead>
+    <tbody>
+      <tr><td>5 月 15 日</td><td>全新理想 L9</td><td>Ultra / Livis 两个版本，官方售价 45.98 万元、50.98 万元。</td><td>高端家庭旗舰产品，需要重视品牌体验、空间展示、试驾服务和高购买力客群。</td></tr>
+      <tr><td>6 月 23 日</td><td>全新理想 L8</td><td>Ultra / Livis 两个版本，官方售价 36.98 万元、42.98 万元。</td><td>丰富家庭 SUV 产品梯度，商圈客群与现有 L 系列门店的展示组合可能需要调整。</td></tr>
+      <tr><td>7 月 16 日</td><td>新一代理想 L6</td><td>官方标准配置售价 24.98 万元，面向更广泛的中大型 SUV 市场。</td><td>相对更低的价格带扩大潜在客群，城市覆盖和商圈选择可能需要向更广泛的消费人群延伸。</td></tr>
+      <tr><td>9 月 2 日</td><td>新款理想 MEGA</td><td>旗舰纯电 MPV，标准配置售价 50.98 万元。</td><td>高端家庭 MPV 的体验场景和展示空间仍然重要，同时要结合纯电补能条件。</td></tr>
+      <tr><td>9 月 16 日</td><td>理想 i9</td><td>六座纯电旗舰家庭 SUV，标准配置售价 36.98 万元。</td><td>纯电产品线继续向家庭旗舰市场延伸，对高线城市纯电用户和充电网络协同提出要求。</td></tr>
+      <tr><td>10 月 28 日</td><td>2026 款理想 i6</td><td>五座纯电 SUV，标准配置售价 24.98 万元，升级电池、芯片和智能化配置。</td><td>纯电产品覆盖更大众的价格带，可能进一步扩大纯电用户覆盖范围。</td></tr>
+    </tbody>
+  </table>
+  <p class="small">以上价格为各发布公告中的标准配置官方售价，不等于终端成交价；不同版本、选装和销售权益可能不同。</p>
+  <h3>4. 门店分布与渠道策略：从“多开店”转向“开好店”</h3>
+  <p>2025 年末，理想汽车披露在中国拥有 548 家零售中心，覆盖 159 个城市；截至 2026 年 10 月 31 日，披露为 481 家零售中心，覆盖 159 个城市。同期服务网络为 527 家服务中心及理想汽车授权服务门店，覆盖 217 个城市，另有 4,206 座超充站、23,163 个充电桩。</p>
+  <table>
+    <thead><tr><th>时点</th><th>零售中心</th><th>覆盖城市</th><th>服务网络</th><th>超充网络</th></tr></thead>
+    <tbody>
+      <tr><td>2025-12-31</td><td>548 家</td><td>159 城</td><td>561 家服务中心及授权服务网点，覆盖 224 城</td><td>3,907 座超充站，21,651 个充电桩</td></tr>
+      <tr><td>2026-06-30</td><td>495 家</td><td>160 城</td><td>536 家服务中心及授权服务网点，覆盖 220 城</td><td>4,097 座超充站，22,593 个充电桩</td></tr>
+      <tr><td>2026-10-31</td><td>481 家</td><td>159 城</td><td>527 家服务中心及授权服务网点，覆盖 217 城</td><td>4,206 座超充站，23,163 个充电桩</td></tr>
+    </tbody>
+  </table>
+  <p>2026 年 3 月的业绩会相关问答中，管理层对渠道策略的表述是“重质不重量”：仍会新增门店，但新增门店优先考虑头部商场和优质汽车城；管理层同时提到低线城市网络相对完善，伴随纯电车型销量提升，后续会重点加密高线城市布局，并对少量低效门店进行正常关停和替换，尤其关注选址不佳或商圈流量下滑的情况。</p>
+  <div class="callout"><b>对岗位的直接启示：</b>模型不应只回答“哪里没有店”，而要回答“新增一家店是否有增量价值”。需要同时衡量市场潜力、优质商圈资源、门店覆盖空白、同城重叠、单店经营质量、成本和纯电补能网络。</div>
+  <h3>5. 面试官问：你怎么看理想目前的经营和渠道方向？</h3>
+  <div class="script">
+    从公开信息看，我理解理想正在经历产品结构和渠道网络的调整。一方面，2025 年收入和交付量同比有所下降，2026 年上半年收入和毛利率也仍有压力；另一方面，公司在 2026 年持续更新 L 系列产品，并推出 i 系列纯电车型和 MEGA 的新款，产品矩阵从增程 SUV 向增程、纯电 SUV 和 MPV 多线拓展。渠道方面，管理层强调重质不重量，新增门店更关注头部商场和优质汽车城，同时根据纯电车型的发展调整高线城市布局。我认为这会让网络规划的重要性更高：既要支撑新品触达和体验，也要避免低效重复开店，最终要看新增门店能否带来有效客流、试驾和交付增量。
+  </div>
+  <h3>6. 面试前建议记住的数字</h3>
+  <div class="grid3">
+    <div class="mini"><span class="metric">1,123 亿</span><b>2025 年总收入</b><p>同比下降 22.3%</p></div>
+    <div class="mini"><span class="metric">257 亿</span><b>2026 Q2 总收入</b><p>同比下降 15.1%</p></div>
+    <div class="mini"><span class="metric">29,025 辆</span><b>2026 年 10 月交付</b><p>累计交付 1,862,676 辆</p></div>
+    <div class="mini"><span class="metric">481 家</span><b>零售中心</b><p>截至 2026-10-31</p></div>
+    <div class="mini"><span class="metric">159 城</span><b>零售中心覆盖城市</b><p>截至 2026-10-31</p></div>
+    <div class="mini"><span class="metric">4,206 座</span><b>超充站</b><p>截至 2026-10-31</p></div>
+  </div>
+</section>
+
+
+<section id="ml-deep">
+  <div class="kicker">Machine learning deep dive</div>
+  <h2>深度补充 D｜机器学习系统知识：常用方法、特点、区别与选址应用</h2>
+  <p class="lead">面试官不一定要求你现场推导公式，但很可能追问：算法解决什么问题、为什么选它、输入输出是什么、有什么优缺点、怎么判断效果好不好。回答时一定要把算法与业务任务对应起来。</p>
+  <h3>1. 先分清三类问题</h3>
+  <table>
+    <thead><tr><th>任务类型</th><th>核心问题</th><th>常见方法</th><th>选址例子</th></tr></thead>
+    <tbody>
+      <tr><td><b>监督学习</b></td><td>有历史结果标签，学习输入和结果之间的关系。</td><td>线性回归、逻辑回归、决策树、随机森林、GBDT、XGBoost、CatBoost、SVM、KNN。</td><td>利用历史门店特征预测候选商圈线索量、订单量，或是否达到开店目标。</td></tr>
+      <tr><td><b>无监督学习</b></td><td>没有明确标签，寻找数据自身的结构和相似性。</td><td>KMeans、层次聚类、DBSCAN、PCA。</td><td>将城市/商圈分成不同类型，识别高消费高客流、汽车城集聚型、覆盖不足型市场。</td></tr>
+      <tr><td><b>优化 / 运筹</b></td><td>在目标和约束下，寻找整体最优的决策组合。</td><td>最大覆盖模型、P-median、整数规划、线性规划、启发式算法。</td><td>预算最多开 10 家店时，选择整体覆盖增量最大、重叠最少的一组点位。</td></tr>
+    </tbody>
+  </table>
+  <h3>2. 常用监督学习算法详解</h3>
+  <h4>线性回归 Linear Regression</h4>
+  <p><b>原理：</b>假设目标值可以由若干特征的加权组合近似表示，通过最小化预测值与真实值之间的误差估计系数。</p>
+  <p><b>适合：</b>预测连续数值，例如候选商圈月度线索量、门店订单量；也适合作为容易解释的基准模型。</p>
+  <p><b>优点：</b>简单、训练快、系数容易解释，能帮助理解变量与预测结果的关系。</p>
+  <p><b>局限：</b>对关系形式有较强假设；复杂非线性关系不容易捕捉；异常值和多重共线性可能影响结果。若用于统计推断，还要关注残差、独立性、同方差等条件。</p>
+  <h4>逻辑回归 Logistic Regression</h4>
+  <p><b>原理：</b>先计算特征的线性组合，再通过 Sigmoid 函数映射为 0—1 之间的概率，常用于二分类。</p>
+  <p><b>适合：</b>预测候选点位是否达到某个标准，例如“是否进入优质候选池”“开业后是否达到目标经营等级”。</p>
+  <p><b>优点：</b>速度快、可解释性较好，能输出概率；适合做基准分类模型。</p>
+  <p><b>局限：</b>决策边界通常较简单，复杂非线性需要人工构造交互项或使用其他模型；类别不平衡时不能只看 Accuracy。</p>
+  <h4>决策树 Decision Tree</h4>
+  <p><b>原理：</b>不断选择一个特征和切分点，把样本分成更相似的子群，直到达到停止条件。分类树常用 Gini 或信息熵衡量纯度，回归树常用误差衡量分裂效果。</p>
+  <p><b>适合：</b>规则相对复杂、变量之间存在非线性和交互的分类或回归问题。</p>
+  <p><b>优点：</b>容易可视化，能表达“如果……那么……”的判断路径；不要求变量之间都是线性关系。</p>
+  <p><b>局限：</b>单棵树容易过拟合，对样本变化比较敏感；树太深时规则复杂且不稳定。</p>
+  <h4>随机森林 Random Forest</h4>
+  <p><b>原理：</b>通过有放回抽样训练多棵决策树，并在每次分裂时随机选择部分特征，最后对分类投票、对回归取平均。这类方法称为 Bagging（装袋集成）。</p>
+  <p><b>优点：</b>通常比单棵树稳定；能处理非线性和特征交互；对特征缩放通常不敏感；可输出特征重要性。</p>
+  <p><b>局限：</b>模型体积和推理成本可能更高；整体解释不如单棵树直观；对训练数据范围外的新城市，外推能力有限。</p>
+  <h4>GBDT Gradient Boosting Decision Tree</h4>
+  <p><b>原理：</b>按顺序训练一系列树，每一轮重点拟合前面模型尚未解释好的误差或损失函数的负梯度，再把各轮结果组合起来。这类方法属于 Boosting（提升集成）。</p>
+  <p><b>优点：</b>对结构化业务数据往往有较强预测能力，能够捕捉复杂变量关系。</p>
+  <p><b>局限：</b>需要调节学习率、树深、迭代轮数等参数；数据噪声大或树过深时容易过拟合；训练通常比简单模型更复杂。</p>
+  <h4>XGBoost</h4>
+  <p><b>原理：</b>是对梯度提升树的工程化和算法改进版本，在损失函数之外加入正则化约束，并利用二阶梯度信息优化树的生长。</p>
+  <p><b>优点：</b>结构化数据预测能力强；支持正则化、缺失值处理和并行计算；工具生态成熟。</p>
+  <p><b>局限：</b>超参数较多；类别变量通常需要编码；小样本时复杂模型不一定优于简单基准模型；必须防止数据泄漏。</p>
+  <h4>LightGBM</h4>
+  <p><b>原理：</b>同样是梯度提升树，使用直方图等方法提高训练效率，通常采用 Leaf-wise 的叶子生长策略。</p>
+  <p><b>优点：</b>大规模结构化数据上训练效率高，速度和内存表现较好。</p>
+  <p><b>局限：</b>Leaf-wise 在小数据集上如果不控制叶子数量和深度，可能更容易过拟合；不是所有数据规模下都比 XGBoost 更合适。</p>
+  <h4>CatBoost</h4>
+  <p><b>原理：</b>也是梯度提升树，针对类别特征处理和目标统计做了专门设计，并通过有序提升等方法降低部分预测偏差。</p>
+  <p><b>优点：</b>类别变量较多时比较方便；减少部分手工编码工作；在结构化数据上表现有竞争力。</p>
+  <p><b>局限：</b>仍需调参和验证；如果城市、商圈、门店类别在训练集和未来应用中的分布差异很大，仍可能泛化不佳。</p>
+  <h4>支持向量机 SVM</h4>
+  <p><b>原理：</b>寻找能够最大化类别间隔的决策边界；通过核函数可以处理非线性边界。</p>
+  <p><b>优点：</b>在中小规模、维度较高的数据上有时表现不错；核方法可以表达非线性关系。</p>
+  <p><b>局限：</b>对特征缩放敏感；样本量很大时训练可能较慢；模型解释和概率输出不如逻辑回归直观。</p>
+  <h4>K 近邻 KNN</h4>
+  <p><b>原理：</b>计算新样本与训练样本的距离，找出最近的 K 个邻居，再根据邻居投票或平均值预测。</p>
+  <p><b>优点：</b>思路直观、几乎没有复杂训练过程，可以作为相似样本参考方法。</p>
+  <p><b>局限：</b>对尺度和距离定义敏感；样本量大时预测慢；高维数据下距离区分度下降。</p>
+  <h3>3. 常用无监督学习方法</h3>
+  <h4>KMeans</h4>
+  <p><b>原理：</b>先设定 K 个中心，将每个样本分配给最近的中心，再反复更新中心，直到聚类结果趋于稳定。</p>
+  <p><b>优点：</b>简单、速度快、容易用于城市或商圈分层。</p>
+  <p><b>局限：</b>需要提前设定 K；对异常值敏感；偏好近似球形、规模相近的簇；不同量纲变量通常要先标准化。</p>
+  <p><b>业务用法：</b>用人口密度、收入、目标价格带销量、新能源渗透率、客流和竞品等变量给城市分群。聚类完成后再看每一类的均值和特征，给类别命名，而不是让算法自动决定“第一类就是最好”。</p>
+  <h4>层次聚类 Hierarchical Clustering</h4>
+  <p><b>原理：</b>从每个样本单独成组开始，逐步合并相似的组，形成树状图；也可以从一个大组逐步拆分。</p>
+  <p><b>优点：</b>可以观察不同粒度下的分组关系，不必一开始就固定 K。</p>
+  <p><b>局限：</b>样本量大时计算成本高；距离度量和链接方式会影响结果。</p>
+  <h4>DBSCAN</h4>
+  <p><b>原理：</b>根据样本周围的密度识别簇，核心参数包括邻域半径 eps 和最小邻居数 min_samples。</p>
+  <p><b>优点：</b>不需要提前指定簇数量；能识别不规则形状的簇；可以把稀疏点标记为噪声。</p>
+  <p><b>局限：</b>对 eps 和 min_samples 敏感；不同密度的数据不容易用同一参数处理；高维空间中距离意义会下降。</p>
+  <h4>PCA 主成分分析</h4>
+  <p><b>原理：</b>把多个相关变量转换成少量互不相关的综合维度，尽量保留原始数据的主要变化信息。</p>
+  <p><b>优点：</b>可以降维、缓解部分变量相关性、辅助可视化。</p>
+  <p><b>局限：</b>新维度是原始变量的线性组合，业务解释不如原始字段直观；通常需要先标准化。</p>
+  <h3>4. 算法区别：面试最常见的对比</h3>
+  <table>
+    <thead><tr><th>对比</th><th>核心区别</th><th>选址业务怎么选</th></tr></thead>
+    <tbody>
+      <tr><td>线性回归 vs 逻辑回归</td><td>前者预测连续数值；后者预测分类概率。</td><td>预测月订单量用回归；预测点位是否达到优质标准用分类。</td></tr>
+      <tr><td>决策树 vs 随机森林</td><td>单棵树容易解释但不稳定；随机森林组合多棵树，通常更稳但更难解释。</td><td>要解释清晰规则可看树；要更稳的预测可以尝试森林。</td></tr>
+      <tr><td>随机森林 vs XGBoost</td><td>随机森林通常并行训练多棵树、降低方差；XGBoost 顺序提升、逐步修正误差。</td><td>森林是稳健基准；XGBoost 常有较强表格数据预测能力，但更依赖调参。</td></tr>
+      <tr><td>XGBoost vs CatBoost</td><td>都属于梯度提升树；CatBoost 对类别特征处理更友好。</td><td>类别字段很多时可以优先试 CatBoost；最终以验证集和业务解释为准。</td></tr>
+      <tr><td>KMeans vs DBSCAN</td><td>KMeans 需要设定簇数，适合相对紧凑的簇；DBSCAN 按密度聚类，可以识别噪声和不规则簇。</td><td>城市画像分层可先试 KMeans；POI 空间集聚探索可考虑 DBSCAN。</td></tr>
+      <tr><td>聚类 vs 分类</td><td>聚类通常没有预先标签；分类需要已有类别标签。</td><td>探索城市类型用聚类；已知历史门店是否优质并想预测新点位时用分类。</td></tr>
+      <tr><td>预测模型 vs 选址优化</td><td>预测模型估计每个候选点的潜力；优化模型选择一组整体最优点位。</td><td>不能只选单点得分最高的前 10 个，因为可能彼此重叠；要考虑网络组合。</td></tr>
+    </tbody>
+  </table>
+  <h3>5. 从原始数据到模型：必须掌握的建模流程</h3>
+  <ol>
+    <li><b>定义样本单位：</b>一行代表一个城市、一个商圈、一个候选点，还是一家门店的一个月？不同单位不能混在同一个训练集里。</li>
+    <li><b>定义目标变量：</b>预测线索量、试驾量、订单量、交付量，还是“是否达到经营目标”？目标不同，任务类型和模型不同。</li>
+    <li><b>划分数据集：</b>训练集用于学习参数，验证集用于选模型和调参，测试集用于最终评估。若要预测未来，优先考虑按时间切分；若要推广到新城市，考虑按城市留出。</li>
+    <li><b>处理缺失值：</b>区分真实为零、未采集和数据源不覆盖；根据业务含义决定填补、保留缺失标记或人工核验。</li>
+    <li><b>处理异常值：</b>先检查是否录入错误、口径不一致或特殊真实情况；不要因为数值高就自动删除。</li>
+    <li><b>编码类别变量：</b>城市等级、门店类型、商圈类型可使用 One-hot、Ordinal 或模型原生类别处理；不能把没有顺序的类别随意编码成连续数字。</li>
+    <li><b>特征缩放：</b>线性模型、KNN、SVM、KMeans 通常更需要标准化；树模型通常对数值尺度不敏感。</li>
+    <li><b>训练与调参：</b>先建立简单基准模型，再尝试复杂模型；控制模型复杂度，避免只追求训练集分数。</li>
+    <li><b>评估和解释：</b>根据业务损失选择指标，分析误差最大的城市、店型和点位，检查模型是否对某类区域系统性高估或低估。</li>
+    <li><b>上线后监控：</b>关注输入数据分布变化、预测误差、排序命中率和业务反馈，定期重训或调整规则。</li>
+  </ol>
+  <h3>6. 评估指标：不只记公式，要理解什么时候用</h3>
+  <table>
+    <thead><tr><th>任务</th><th>指标</th><th>解释</th><th>注意</th></tr></thead>
+    <tbody>
+      <tr><td>回归</td><td>MAE</td><td>平均绝对误差，预测平均差多少个单位。</td><td>直观，对极端误差相对不那么敏感。</td></tr>
+      <tr><td>回归</td><td>RMSE</td><td>均方根误差，对大误差惩罚更重。</td><td>特别不希望严重低估或高估时重点观察。</td></tr>
+      <tr><td>回归</td><td>MAPE</td><td>平均绝对百分比误差。</td><td>真实值接近 0 时可能非常不稳定。</td></tr>
+      <tr><td>回归</td><td>R²</td><td>模型相对均值基准解释了多少目标变量波动。</td><td>R² 高不代表业务预测一定好，也不能替代误差指标。</td></tr>
+      <tr><td>分类</td><td>Accuracy</td><td>预测正确的样本占比。</td><td>类别不平衡时可能有误导性。</td></tr>
+      <tr><td>分类</td><td>Precision</td><td>被预测为优质的点位中，真正优质的比例。</td><td>实地调研资源有限时，可能更重视高 Precision。</td></tr>
+      <tr><td>分类</td><td>Recall</td><td>所有真实优质点位中，模型找回了多少。</td><td>不希望漏掉高潜力机会时，需要关注 Recall。</td></tr>
+      <tr><td>分类</td><td>F1</td><td>Precision 和 Recall 的调和平均。</td><td>适合需要平衡两种错误的情况。</td></tr>
+      <tr><td>分类</td><td>ROC-AUC / PR-AUC</td><td>衡量不同阈值下模型区分正负样本的能力。</td><td>正样本很少时 PR-AUC 往往更有参考价值。</td></tr>
+      <tr><td>排序</td><td>Precision@K</td><td>排名前 K 的候选点里有多少是真正优质的。</td><td>贴合“先调研排名前 20 个点位”的场景。</td></tr>
+      <tr><td>排序</td><td>Recall@K / NDCG@K</td><td>前 K 名覆盖多少优质点；或更重视高质量点是否排在前面。</td><td>需要可靠的历史优质点标签或相关性标注。</td></tr>
+    </tbody>
+  </table>
+  <h3>7. 建模时必须意识到的四个风险</h3>
+  <ul>
+    <li><b>数据泄漏：</b>如果预测开店后 6 个月销量，却把开业后的促销投入、实际客流或订单信息放进特征，模型就提前知道了答案。</li>
+    <li><b>时间泄漏：</b>随机拆分可能让同一门店相邻月份同时进入训练集和测试集，导致评估虚高。预测未来时应考虑按时间留出。</li>
+    <li><b>区域泛化问题：</b>模型在一线城市训练得好，不代表在低线城市也好。要做分城市、分区域验证。</li>
+    <li><b>相关不等于因果：</b>高收入商圈门店销量可能更高，但不等于单纯提高收入就会带来销量；位置、品牌、竞争、店型等因素可能共同影响结果。</li>
+  </ul>
+  <h3>8. 面试官问：你会如何选择模型？</h3>
+  <div class="script">我不会一开始就指定某一个算法，而是先看业务目标和数据特点。如果要预测连续的线索量或订单量，我会先用线性回归建立可解释的基准，再尝试随机森林、XGBoost 或 CatBoost 捕捉非线性关系。如果是判断一个点位能否达到某个经营标准，就属于分类问题，可以从逻辑回归和树模型开始。如果目前没有明确的优质点位标签，只是想识别城市或商圈类型，可以使用 KMeans 等聚类方法。若最终要在预算和门店数量限制下选出一组点位，还需要结合最大覆盖或 P-median 这类选址优化方法。最后我会根据数据规模、验证结果、可解释性和实际决策成本选择方案，而不是只看训练集准确率。</div>
+</section>
+
+<section id="sql-deep">
+  <div class="kicker">SQL for network analytics</div>
+  <h2>深度补充 E｜SQL 系统准备：从基础查询到门店网络分析</h2>
+  <p class="lead">SQL 的核心作用是从业务数据库中按口径提取数据、关联不同表、聚合指标、构建分析宽表。即使建模主要使用 Python，SQL 也通常是数据分析的基础能力。</p>
+  <h3>1. 先认识几张可能存在的业务表</h3>
+  <table>
+    <thead><tr><th>示例表名</th><th>一行代表什么</th><th>常见字段</th></tr></thead>
+    <tbody>
+      <tr><td><code>city_market</code></td><td>一座城市的一条市场记录</td><td><code>city_id</code>、<code>city_name</code>、<code>population</code>、<code>income</code>、<code>ev_penetration</code></td></tr>
+      <tr><td><code>store</code></td><td>一家门店</td><td><code>store_id</code>、<code>city_id</code>、<code>store_type</code>、<code>open_date</code>、<code>status</code></td></tr>
+      <tr><td><code>store_monthly_kpi</code></td><td>一家门店一个月的经营数据</td><td><code>store_id</code>、<code>month</code>、<code>leads</code>、<code>visits</code>、<code>test_drives</code>、<code>orders</code>、<code>deliveries</code></td></tr>
+      <tr><td><code>candidate_site</code></td><td>一个候选点位</td><td><code>site_id</code>、<code>city_id</code>、<code>district</code>、<code>footfall</code>、<code>rent</code>、<code>competitor_cnt</code></td></tr>
+      <tr><td><code>competitor_store</code></td><td>一家竞品门店</td><td><code>competitor_id</code>、<code>brand</code>、<code>city_id</code>、<code>longitude</code>、<code>latitude</code></td></tr>
+    </tbody>
+  </table>
+  <p class="small">表名和字段是为讲解 SQL 而构造的示例，不代表理想汽车真实数据库结构。</p>
+  <h3>2. 基础查询：SELECT、WHERE、ORDER BY、LIMIT</h3>
+  <pre><code>-- 查询杭州状态正常的零售门店
+SELECT store_id, store_type, open_date
+FROM store
+WHERE city_id = 'HZ'
+  AND status = 'active'
+ORDER BY open_date DESC
+LIMIT 20;</code></pre>
+  <h3>3. 聚合：GROUP BY、COUNT、SUM、AVG、HAVING</h3>
+  <pre><code>-- 统计每个城市的有效门店数量
+SELECT city_id, COUNT(*) AS store_count
+FROM store
+WHERE status = 'active'
+GROUP BY city_id
+HAVING COUNT(*) >= 5
+ORDER BY store_count DESC;</code></pre>
+  <p><code>COUNT(*)</code> 统计行数；<code>COUNT(column)</code> 不统计 NULL；<code>COUNT(DISTINCT column)</code> 统计去重后的数量；<code>SUM()</code> 求和；<code>AVG()</code> 求平均；<code>MAX()</code>/<code>MIN()</code> 求最大/最小。WHERE 在分组前过滤明细行，HAVING 在分组后过滤聚合结果。</p>
+  <h3>4. 多表关联：JOIN</h3>
+  <table>
+    <thead><tr><th>类型</th><th>含义</th><th>常见用途</th></tr></thead>
+    <tbody>
+      <tr><td>INNER JOIN</td><td>只保留两张表都能匹配上的记录。</td><td>只分析已有门店且存在经营数据的样本。</td></tr>
+      <tr><td>LEFT JOIN</td><td>保留左表全部记录，右表匹配不到则为 NULL。</td><td>保留所有门店，包括尚无经营数据的新店。</td></tr>
+      <tr><td>RIGHT JOIN</td><td>保留右表全部记录。</td><td>通常可以交换左右表改写成 LEFT JOIN。</td></tr>
+      <tr><td>FULL OUTER JOIN</td><td>保留两边全部记录。</td><td>对比两套数据源的全量差异，具体支持情况取决于数据库。</td></tr>
+    </tbody>
+  </table>
+  <pre><code>-- 将门店经营表现和城市市场信息关联
+SELECT
+    s.store_id,
+    c.city_name,
+    s.store_type,
+    SUM(k.leads) AS total_leads,
+    SUM(k.deliveries) AS total_deliveries
+FROM store AS s
+LEFT JOIN store_monthly_kpi AS k
+    ON s.store_id = k.store_id
+LEFT JOIN city_market AS c
+    ON s.city_id = c.city_id
+WHERE s.status = 'active'
+  AND k.month >= '2026-01-01'
+GROUP BY s.store_id, c.city_name, s.store_type;</code></pre>
+  <div class="warn"><b>常见坑：</b>如果想保留没有经营数据的门店，却把右表日期条件写在 WHERE 中，LEFT JOIN 可能出现类似 INNER JOIN 的效果。可以把右表过滤条件放到 ON 中，或明确处理 NULL。</div>
+  <h3>5. CASE WHEN：构造业务分类和转化指标</h3>
+  <pre><code>SELECT
+    site_id,
+    CASE
+        WHEN footfall >= 100000 THEN '高客流'
+        WHEN footfall >= 50000 THEN '中客流'
+        ELSE '低客流'
+    END AS footfall_level,
+    CASE
+        WHEN visits = 0 THEN NULL
+        ELSE 1.0 * test_drives / visits
+    END AS test_drive_rate
+FROM site_store_kpi;</code></pre>
+  <p>CASE WHEN 常用于分层、标签构造、异常分类和条件聚合。阈值需要根据业务口径设定，示例中的 5 万或 10 万不是理想汽车的真实标准。</p>
+  <h3>6. CTE 和子查询：把复杂查询拆成几步</h3>
+  <pre><code>WITH recent_kpi AS (
+    SELECT
+        store_id,
+        AVG(deliveries) AS avg_monthly_deliveries
+    FROM store_monthly_kpi
+    WHERE month >= '2026-07-01'
+      AND month <= '2026-09-01'
+    GROUP BY store_id
+)
+SELECT s.store_id, s.city_id, r.avg_monthly_deliveries
+FROM recent_kpi AS r
+JOIN store AS s ON r.store_id = s.store_id
+WHERE s.status = 'active'
+ORDER BY r.avg_monthly_deliveries DESC
+LIMIT 20;</code></pre>
+  <p><code>WITH</code> 定义公共表表达式（CTE），适合把长 SQL 拆成易读步骤；子查询是在另一个查询内部嵌套查询。两者都可以实现分阶段计算。</p>
+  <h3>7. 窗口函数：排名、同环比和累计指标</h3>
+  <pre><code>-- 每个城市内部，候选点位按潜力分排名
+SELECT
+    city_id, site_id, potential_score,
+    ROW_NUMBER() OVER (
+        PARTITION BY city_id
+        ORDER BY potential_score DESC
+    ) AS city_rank
+FROM candidate_site;</code></pre>
+  <pre><code>-- 计算每家门店本月交付量与上月交付量的变化
+SELECT
+    store_id, month, deliveries,
+    LAG(deliveries, 1) OVER (
+        PARTITION BY store_id ORDER BY month
+    ) AS last_month_deliveries,
+    deliveries - LAG(deliveries, 1) OVER (
+        PARTITION BY store_id ORDER BY month
+    ) AS mom_change
+FROM store_monthly_kpi;</code></pre>
+  <table>
+    <thead><tr><th>窗口函数</th><th>用途</th></tr></thead>
+    <tbody>
+      <tr><td><code>ROW_NUMBER()</code></td><td>严格排序，常用于每组取最新一条或去重。</td></tr>
+      <tr><td><code>RANK()</code></td><td>并列名次后会跳号，例如 1、1、3。</td></tr>
+      <tr><td><code>DENSE_RANK()</code></td><td>并列名次后不跳号，例如 1、1、2。</td></tr>
+      <tr><td><code>LAG()</code> / <code>LEAD()</code></td><td>取上一行/下一行的值，常用于环比、趋势分析。</td></tr>
+      <tr><td><code>SUM() OVER()</code></td><td>计算累计值或分组总量，同时保留明细。</td></tr>
+      <tr><td><code>AVG() OVER()</code></td><td>计算分组平均值或移动平均。</td></tr>
+    </tbody>
+  </table>
+  <h3>8. 网络分析常见 SQL 练习</h3>
+  <details class="qa"><summary>练习 1：统计每个城市有效门店数量，并排序。</summary><div class="answer"><pre><code>SELECT city_id,
+       COUNT(DISTINCT store_id) AS active_store_count
+FROM store
+WHERE status = 'active'
+GROUP BY city_id
+ORDER BY active_store_count DESC;</code></pre>注意使用 DISTINCT 防止源表重复造成重复计数。</div></details>
+  <details class="qa"><summary>练习 2：计算每家门店近三个月的线索到店率。</summary><div class="answer"><pre><code>SELECT store_id,
+       SUM(leads) AS total_leads,
+       SUM(visits) AS total_visits,
+       CASE WHEN SUM(leads) = 0 THEN NULL
+            ELSE 1.0 * SUM(visits) / SUM(leads)
+       END AS visit_rate
+FROM store_monthly_kpi
+WHERE month >= '2026-07-01'
+  AND month <= '2026-09-01'
+GROUP BY store_id;</code></pre>先汇总分子和分母再计算比率，不要简单平均每个月的比率；注意分母为 0。</div></details>
+  <details class="qa"><summary>练习 3：找出每个城市潜力分最高的前三个候选点位。</summary><div class="answer"><pre><code>WITH ranked_sites AS (
+    SELECT city_id, site_id, potential_score,
+           ROW_NUMBER() OVER (
+               PARTITION BY city_id
+               ORDER BY potential_score DESC
+           ) AS rn
+    FROM candidate_site
+)
+SELECT city_id, site_id, potential_score
+FROM ranked_sites
+WHERE rn <= 3
+ORDER BY city_id, rn;</code></pre>先按城市分区排名，再筛选每组前三名。</div></details>
+  <details class="qa"><summary>练习 4：找出每个城市最新开业的门店。</summary><div class="answer"><pre><code>WITH store_order AS (
+    SELECT store_id, city_id, open_date,
+           ROW_NUMBER() OVER (
+               PARTITION BY city_id
+               ORDER BY open_date DESC
+           ) AS rn
+    FROM store
+)
+SELECT store_id, city_id, open_date
+FROM store_order
+WHERE rn = 1;</code></pre>若开业日期相同，还应增加稳定的次级排序字段。</div></details>
+  <details class="qa"><summary>练习 5：检查候选点位关键字段缺失。</summary><div class="answer"><pre><code>SELECT
+    COUNT(*) AS total_rows,
+    SUM(CASE WHEN city_id IS NULL THEN 1 ELSE 0 END) AS missing_city,
+    SUM(CASE WHEN longitude IS NULL OR latitude IS NULL
+             THEN 1 ELSE 0 END) AS missing_coordinate,
+    SUM(CASE WHEN footfall IS NULL THEN 1 ELSE 0 END) AS missing_footfall
+FROM candidate_site;</code></pre>先用 SQL 批量统计缺失，再决定补数、回源或人工核验。</div></details>
+  <h3>9. SQL 高频概念追问</h3>
+  <ul>
+    <li><b>WHERE 和 HAVING：</b>WHERE 过滤分组前的行；HAVING 过滤 GROUP BY 后的组。</li>
+    <li><b>UNION 和 UNION ALL：</b>UNION 合并并去重；UNION ALL 直接拼接，通常更快，但保留重复行。</li>
+    <li><b>主键和外键：</b>主键唯一标识一条记录；外键用于关联另一张表中的主键或唯一键。</li>
+    <li><b>NULL：</b>代表未知或缺失，不能直接用 <code>= NULL</code> 判断，应使用 <code>IS NULL</code>。</li>
+    <li><b>COUNT(*) 和 COUNT(col)：</b>前者统计行数；后者忽略该列为 NULL 的记录。</li>
+    <li><b>索引：</b>帮助数据库更快定位数据，但占用空间，也会增加写入和维护成本。</li>
+    <li><b>LEFT JOIN 后记录变多：</b>常见原因是右表关联键不唯一，形成一对多或多对多连接。要先检查关联键粒度和重复值。</li>
+  </ul>
+  <h3>10. 面试官问 SQL 水平如何？</h3>
+  <div class="script">我目前能够使用 SQL 完成基础的数据查询、条件筛选、分组聚合和多表关联，也理解窗口函数在排名、去重和时间序列分析中的用途。结合这个岗位，我认为 SQL 主要用于从门店、城市、候选点位和经营数据表中提取统一口径的数据，再把数据交给 Python 做进一步建模和分析。我目前还在加强复杂查询和实际业务数据场景的熟练度。如果入职后需要使用 SQL，我会优先熟悉公司的数据表结构、主键关系和指标口径，再把常用查询沉淀成可复用脚本。</div>
+</section>
+
+
+<section id="behavior-deep">
+  <div class="kicker">Behavioral interview · full answers</div>
+  <h2>深度补充 F｜行为面试：完整回答示范</h2>
+  <p class="lead">以下回答尽量使用你已有的真实经历组织，而不是编造“带领团队、显著提升效率”之类的成果。正式面试前请核对每个细节，只保留你确实做过、能够继续回答追问的部分。</p>
+  <details class="qa" open>
+    <summary>1. 请讲一次你遇到的最大困难，以及你是如何解决的。</summary>
+    <div class="answer">
+      <div class="script">我觉得比较有挑战的一次经历，是我在目前的 AI 产品助理实习中参与行业研究报告模板和 Skill 的迭代。这个任务的难点不是简单地把资料放进报告，而是需要把一个行业研究任务拆成比较完整、稳定、能够复用的分析流程。模板涉及目录结构、产业链、关键指标、龙头企业财务分析和附录等多个部分，而且不同章节之间需要有逻辑联系。
+
+      一开始我发现，如果只是不断增加章节和提示词，生成的内容不一定更好。有些内容虽然看起来很完整，但分析重点不够突出，章节之间也容易重复。因此我先回到报告最终要解决的问题，把整体结构重新梳理成几个层次：先明确核心判断，再提供事实和数据依据，然后解释背后的原因和产业链传导，最后落到对银行业务的启示。接着，我把每个章节进一步拆成需要回答的问题、需要使用的指标、资料来源和输出要求，再通过样例生成检查哪些地方不符合预期，针对具体问题修改模板和指令。
+
+      这个过程经历了多轮调整，目录、二级章节、指标库、产业链分析和企业财务部分都反复优化。最后形成了一套相对完整、可以复用的行业研究框架。对我来说，这次经历最大的收获是，AI 项目不能只关注工具能不能生成内容，更重要的是先把业务任务和分析逻辑定义清楚，再通过测试和反馈不断修正。</div>
+      <p><b>追问：最难的是哪一部分？你怎么判断模板变好了？</b></p>
+      <p>我认为最难的是把“报告看起来完整”和“报告真的有分析逻辑”区分开。我的处理方式是给每个章节明确任务和证据要求，而不是只规定标题。例如企业分析不能只罗列财务数据，还要解释指标变化和经营情况之间的关系。评价时我会看生成内容是否回答了章节问题、是否有对应数据来源、是否与前后章节衔接，以及是否存在重复或空泛表述。这个经历也让我意识到，模型输出质量需要业务框架和人工检查共同保证。</p>
+    </div>
+  </details>
+  <details class="qa">
+    <summary>2. 请讲一次团队合作经历。</summary>
+    <div class="answer">
+      <div class="script">我可以分享一次机器学习课程项目中的团队合作经历。这个项目需要团队共同完成数据分析、特征处理、模型训练和结果汇报。因为机器学习项目的环节比较多，如果每个人独立做自己的部分，很容易出现数据口径不一致、模型结果无法比较的问题。
+
+      在项目推进时，我认为首先要统一的是目标变量、数据处理方式和模型评价标准。比如我们不能一个模型用准确率比较，另一个模型只看训练集表现，这样很难得出有意义的结论。所以我会先和队友确认任务定义和评价指标，再围绕数据预处理、特征构建和模型实验开展工作。模型结果出来后，也不能只比较一个数字，还要结合特征表现和模型适用性讨论。
+
+      这次合作让我认识到，团队项目里沟通的重点不是简单地汇报自己做完了什么，而是要保证不同模块之间能够衔接，最终共同回答同一个问题。如果重新做一次，我会更早把数据字典、实验记录和结果汇总格式统一下来，这样能减少后期整合成本。</div>
+      <div class="warn"><b>事实核对：</b>如果你并没有负责统一评价指标，就不要把这句话说成自己的实际行动，可以改成“我在自己负责的模型实验中遵循统一口径，并及时同步结果”。</div>
+    </div>
+  </details>
+  <details class="qa">
+    <summary>3. 请讲一次你主动承担责任、推动事情完成的经历。</summary>
+    <div class="answer">
+      <div class="script">在目前的 AI 研究相关实习中，我主要负责过生猪行业研报 Skill 的工作。这个任务并不是简单地让模型生成一份报告，而是需要先理解行业研究的逻辑，再把它拆解成模型可以执行的任务和结构。
+
+      我在推进时没有只等着接收具体修改意见，而是会先从报告使用者的角度检查结果：哪些结论需要数据支撑，哪些内容需要区分事实和判断，哪些章节需要明确行业指标和上下游关系。然后我会把这些要求落实到 Skill 的结构、参考资料和输出约束里，并通过实际生成结果检查问题，再继续修改。
+
+      我认为自己主动承担的部分，是把比较模糊的研究要求转成可执行、可检查的结构，而不是只完成表面上的资料整理。最终这项 Skill 形成了相对完整的交付，也获得了具备商业交付价值的评价。这让我对 AI 产品落地有了更具体的认识：一个工具能不能真正被业务使用，取决于它能否稳定解决具体问题。</div>
+      <p><b>追问：你具体负责了什么？</b>我主要参与的是生猪行业研报 Skill 的研究框架和输出要求设计，包括行业资料梳理、报告结构拆解、章节内容要求和生成结果检查。底层模型和系统开发不是我独立完成的，我的工作重点是让业务研究逻辑能够被组织成相对标准化的流程。</p>
+    </div>
+  </details>
+  <details class="qa">
+    <summary>4. 请讲一次你和同事或队友意见不一致的经历。</summary>
+    <div class="answer">
+      <div class="script">在报告模板的迭代过程中，我遇到过对交付重点理解不完全一致的情况。研究报告需要兼顾内容覆盖和分析深度，有时反馈会更关注章节是否齐全、格式是否统一，而我在检查生成结果时，会发现即使章节齐全，也可能存在观点不够明确、证据不足或者内容重复的问题。
+
+      面对这种情况，我不会直接说某种做法不对，而是先确认双方的共同目标都是让报告更符合使用要求。然后我会把比较抽象的分歧具体化，例如拿同一个章节的生成结果做对照，分别检查结构完整性、观点清晰度、数据依据和重复内容，再讨论应该优先修改哪一项。这样就能从个人偏好转成对交付标准的讨论。
+
+      这件事让我认识到，跨部门合作中很多分歧不是目标不同，而是对“什么叫做好”的理解不同。与其反复争论，不如先把评价标准和样例统一起来。</div>
+      <p class="small">如果面试官要求具体到某一次真实争执，需要补充当时的对象、具体意见和最终决定；不要把所有反复修改都描述成冲突。</p>
+    </div>
+  </details>
+  <details class="qa">
+    <summary>5. 请讲一次失败或没有达到预期的经历。</summary>
+    <div class="answer">
+      <div class="script">我之前在做行业研究报告相关工作时，有过一次比较明显的认识调整。刚开始接触这类任务时，我容易把注意力放在报告结构是否完整、资料是否搜集齐全、页面是否符合模板要求上。但后来在多轮修改中，我逐渐发现，结构完整不代表分析质量高。如果没有明确的核心观点，数据和资料只是堆在一起，读者仍然不知道这些信息说明了什么。
+
+      后来我调整了自己的工作方式，不再一开始就急着填充所有章节，而是先确认每一部分要回答的研究问题，再确定需要哪些数据和证据，最后才组织成报告内容。对于生成式 AI 的输出，我也会先检查结论是否有依据、逻辑是否连贯，再去处理格式和表达。
+
+      这次经历让我认识到，我之前对交付质量的理解偏向形式完整，后来开始更重视分析逻辑和证据链。现在遇到新的任务，我会先确认目标和判断标准，再开始搜集资料和执行。</div>
+    </div>
+  </details>
+  <details class="qa">
+    <summary>6. 请讲一次你快速学习新知识并应用到工作中的经历。</summary>
+    <div class="answer">
+      <div class="script">我在接触行业研究类 AI Skill 时，需要在较短时间内理解新的行业知识和 AI 工作流程。对我来说，困难主要有两层：一层是行业本身有专业术语和产业链关系，另一层是需要理解这些内容怎样拆解成模型能够执行的任务。
+
+      我的学习方式不是先泛泛地看大量资料，而是先明确交付物需要回答什么问题。比如要完成某个行业章节，我会先看已有的研究报告和行业资料，整理核心概念、产业链环节和关键指标，再对照模板确定每个部分需要哪些信息。对于不熟悉的概念，我会回到权威资料或原始来源确认含义，而不是直接沿用模型生成的解释。随后我会把学到的内容应用到 Skill 的章节要求和输出检查中。
+
+      这段经历让我形成了一个比较有效的学习习惯：先从任务倒推需要掌握的知识，再通过真实交付检验自己是否理解，而不是只停留在看过资料的层面。</div>
+    </div>
+  </details>
+  <details class="qa">
+    <summary>7. 请讲一次你在多任务并行或高压情况下完成工作的经历。</summary>
+    <div class="answer">
+      <div class="script">在实习期间，我有过同时处理行业研究 Skill、报告模板调整、标书材料修改和数据整理任务的经历。不同任务的交付时间和工作性质不一样，有些是需要反复讨论和迭代的长期任务，有些则是时间比较紧的临时需求。
+
+      我当时会先把任务拆成具体交付项，确认每项任务的截止时间、影响范围和是否依赖其他人的输入。对于有明确截止时间、会影响后续流程的任务，我会优先推进；对于需要多轮打磨的模板和 Skill，则拆成几个可检查的小阶段，避免一直修改却没有阶段性结果。如果发现数据或业务口径不清楚，我会尽早列出待确认问题，而不是自己猜测后继续做。
+
+      这段经历让我意识到，高压环境下最重要的不是同时做很多事情，而是把优先级、交付标准和风险讲清楚。对于自己无法按时完成的部分，也应该提前同步，而不是等到截止时间才暴露问题。</div>
+    </div>
+  </details>
+  <details class="qa">
+    <summary>8. 请讲一次你通过数据或事实支持判断、说服他人的经历。</summary>
+    <div class="answer">
+      <div class="script">我比较适合用 A/B Test 和因果推断课程项目来回答这道题。项目中我们不是简单比较两个组的结果，而是需要考虑实验设计、样本分组和统计不确定性。因为即使实验组的结果比对照组高，也不能马上说明策略有效，还要看两组是否具有可比性、差异是否可能由随机波动造成，以及置信区间是否足够支持结论。
+
+      这个项目让我形成了一个习惯：讨论业务方案时，不只说“我觉得这个方案更好”，而是先明确需要观察什么指标、用什么对照方式、数据是否支持结论。如果结果不够明确，也要说明证据边界，而不是为了得到一个确定答案就忽略不确定性。
+
+      这种思路可以迁移到网络规划中。例如比较两个商圈的开店效果时，不能只看某一家店销量更高，还要考虑门店类型、开业时长、城市规模、人员配置和营销活动等因素。只有把可比条件尽量控制住，分析结论才更有参考价值。</div>
+    </div>
+  </details>
+  <details class="qa">
+    <summary>9. 如果给你的数据非常混乱、缺失很多，你会怎么办？</summary>
+    <div class="answer">
+      <div class="script">我会先确认这批数据最终要支持什么决策，再判断哪些字段是必须的。比如如果是做候选点位排序，城市、地址或坐标、商圈类型、客流口径和关键成本信息可能是优先核验的字段；有些辅助字段可以后续补充。
+
+      接下来我会先做数据质量检查，统计缺失、重复、异常值和字段格式问题。对于可以通过规则解决的，比如日期格式不统一、文本空格、重复记录，我会用 Python 或 SQL 批量处理。对于业务含义不明确的字段，例如客流到底是商场整体还是某个入口、租金是否含物业费，我会整理成待确认清单，找数据提供方核实。
+
+      如果时间紧，我会先交付一个字段完整度较高、能够支持初步判断的版本，同时明确哪些数据尚未核实、哪些结论只能作为初筛结果。因为选址决策影响较大，我不会为了让表格看起来完整而自行填补关键业务数据。</div>
+    </div>
+  </details>
+  <details class="qa">
+    <summary>10. 你怎么看重复、细致的数据整理和实地调研工作？</summary>
+    <div class="answer">
+      <div class="script">我认为这类工作是网络分析的基础，而且它并不是没有价值的简单执行。选址模型最终依赖人口、客流、竞品、门店位置和经营数据，如果地址坐标错了、客流口径不一致，或者调研信息没有及时更新，后面的模型分数再精细也可能得出错误结论。
+
+      所以刚开始我会先认真熟悉数据标准和业务流程，保证字段准确、来源可追溯、异常能够及时反馈。等掌握了重复工作的规律之后，再识别哪些步骤可以用 Python、SQL 或 AI 做批量处理，例如格式统一、重复记录识别、调研文本抽取和异常提醒。但对于租金、物业条件、现场动线等关键判断，我仍然认为需要人工核验。
+
+      我不排斥从基础的数据和调研工作做起，因为只有真正理解数据怎么产生、业务怎么运转，后续提出的自动化和模型优化建议才会有实际价值。</div>
+    </div>
+  </details>
+  <details class="qa">
+    <summary>11. 你如何和不熟悉数据分析的业务团队沟通？</summary>
+    <div class="answer">
+      <div class="script">我会尽量先从业务问题出发，而不是一开始就讲算法。例如区域团队关心的是某个商圈值不值得继续跟进，我不会先介绍模型用了什么算法，而是先说明这个商圈的目标客群、有效客流、竞品、现有门店覆盖和成本情况，再解释为什么模型把它排在这个位置。
+
+      如果业务方提出不同意见，我会进一步确认他们掌握的现场信息是否没有进入数据模型。比如商场近期调整了入口、附近道路施工、物业租金发生变化，这些都可能影响结果。我的目标不是让业务团队接受模型分数，而是把数据依据和现场经验放在一起，形成更可靠的判断。</div>
+    </div>
+  </details>
+  <details class="qa">
+    <summary>12. 你如何看待出差和现场调研？</summary>
+    <div class="answer">
+      <div class="script">我认为现场调研对这个岗位是必要的。数据分析可以帮助我们快速筛选大量城市和商圈，但很多关键因素只有现场才能确认，例如门店位置是否容易被看到、消费者实际从哪里进入、停车是否方便、竞品门店处于什么位置，以及商场客流是否真的经过目标铺位。如果只依赖线上数据，可能会把商场整体客流误认为门店所在位置的有效客流。
+
+      所以我愿意配合业务需要出差，也希望在前期多参与现场调研，通过实际观察理解模型中的指标代表什么。对我来说，现场调研不是和数据分析相反的工作，而是帮助验证数据和完善模型的重要环节。</div>
+    </div>
+  </details>
+</section>
+
+<section id="qa-deep">
+  <div class="kicker">High-frequency questions · full answers</div>
+  <h2>深度补充 G｜高频面试问题：详细参考回答</h2>
+  <p class="lead">以下是更接近正式面试的口语版本。不要逐字背诵，先理解每个回答的逻辑，再用自己的表达说出来。</p>
+  <details class="qa" open>
+    <summary>Q1｜请谈谈你对网络分析专员这个岗位的理解。</summary>
+    <div class="answer"><div class="script">我理解这个岗位的核心，是通过数据和算法支持公司的线下销售网络规划。它不是单纯分析已经开业门店的销售数据，而是要在开店之前就参与市场判断，帮助公司识别哪些城市有开发价值、哪些商圈更值得优先进入，以及具体候选点位应该如何排序。
+
+    我把工作理解成三个阶段。第一个阶段是前期规划，需要结合公司的销量目标和产品节奏，整理人口、消费潜力、客流、竞品和现有门店覆盖等数据，形成城市和商圈的初始优先级。第二个阶段是现场验证，通过商场、汽车城的实地调研，核实线上数据无法反映的动线、可见度、停车和物业条件，再把这些信息结构化回填到数据库，修正模型结果。第三个阶段是开业后的复盘，把门店的线索、到店、试驾、订单和交付表现与开店前的预测对照，分析哪些选址因素真正有参考价值，并继续优化模型和规则。
+
+    所以我认为这个岗位需要的不只是算法知识，还需要数据质量意识、业务理解和跨部门沟通能力。模型的作用不是替代所有人的判断，而是提高批量筛选和决策的效率，让选址过程更有依据、可复盘。</div></div>
+  </details>
+  <details class="qa">
+    <summary>Q2｜为什么选择理想汽车？</summary>
+    <div class="answer"><div class="script">我选择理想汽车，主要是因为它处在产品和销售网络都在持续调整的阶段，而这个岗位能够直接参与公司的线下经营决策。
+
+    从产品来看，理想原本以家庭用户和增程 SUV 建立了比较鲜明的市场定位，近两年又持续拓展纯电产品线，产品覆盖和用户群体都在变化。不同车型的价格带、用户需求和补能场景不同，对线下门店展示、试驾体验和城市覆盖的要求也会变化。
+
+    从渠道来看，我关注到公司管理层在 2026 年提到要更加重视门店质量，而不是单纯追求门店数量，新增门店优先考虑头部商场和优质汽车城，同时结合纯电车型发展优化高线城市布局。我觉得这意味着网络规划不仅要看哪里有市场，还要看门店能不能带来有效客流、试驾和交付，以及是否和现有网络形成互补。
+
+    我希望进入一家业务场景足够具体、数据能够真正影响经营决策的公司，而理想汽车的网络分析岗位正好结合了我的统计分析背景和对 AI 数据应用的兴趣。</div></div>
+  </details>
+  <details class="qa">
+    <summary>Q3｜为什么选择网络分析，而不是继续做 AI 产品经理？</summary>
+    <div class="answer"><div class="script">我并不是完全放弃 AI 方向，而是希望把自己的数据分析能力放到更具体的业务问题中去。之前的 AI 实习让我接触到知识整理、流程设计、模型调用和输出评估，但我也逐渐发现，自己比较感兴趣的是如何定义问题、处理数据、验证结论，以及让分析结果真正影响业务。
+
+    网络分析岗位虽然不一定是纯 AI 产品岗位，但它需要把 AI 和算法应用到线下零售场景，例如自动处理调研信息、建立商圈潜力模型、进行候选点位排序和门店复盘。我觉得这类工作既能发挥我的统计和 Python 能力，也能让我深入理解业务，而不是只停留在功能设计层面。
+
+    所以对我来说，这不是从 AI 转向一个完全无关的方向，而是从偏 AI 应用和信息结构化的经历，进一步走向数据驱动的业务分析和决策支持。</div></div>
+  </details>
+  <details class="qa">
+    <summary>Q4｜你认为自己最大的优势是什么？</summary>
+    <div class="answer"><div class="script">我认为自己的优势主要是能够把数据分析和业务问题连接起来。我的本科是应用统计，硕士是商业分析，所以对统计分析、机器学习和实验评估有系统的学习基础。除了课程项目，我也有实际的数据处理和 AI 应用经历。
+
+    比如在 AI 问答相关实习中，我接触过文本资料整理、信息结构化和模型测试；在目前的 AI 行业研究工作中，我需要把复杂的行业资料拆解成章节、指标和可复用的分析要求。这些经历让我比较习惯先理解任务目标，再整理数据和信息，最后检查输出是否真正回答了业务问题。
+
+    我觉得网络分析专员需要的正是这种能力：既能处理数据和模型，也能理解为什么要分析这些指标、分析结果最终要支持什么决策。</div></div>
+  </details>
+  <details class="qa">
+    <summary>Q5｜你没有汽车行业经验，如何快速上手？</summary>
+    <div class="answer"><div class="script">我确实没有直接负责过汽车门店网络规划或选址的经验，所以我不会把自己说成已经熟悉汽车渠道体系。但我认为岗位需要的底层分析能力有一部分是可以迁移的，例如数据清洗、特征工程、机器学习建模、指标分析和结果验证，这些是我过去学习和项目中接触过的。
+
+    如果入职，我会先从三个方面补齐业务知识。第一，熟悉理想的产品矩阵、不同车型的目标用户和销售场景，理解产品变化为什么会影响门店布局。第二，熟悉公司的门店类型、网络规划口径和现有经营指标，了解一条选址决策从初筛到开业的完整流程。第三，跟随区域团队参与实地调研，把线上数据中的人口、客流、竞品和覆盖指标与现场实际情况对应起来。
+
+    我认为行业知识需要时间积累，但只要先把业务流程和数据口径弄清楚，我的统计分析和数据处理基础可以帮助我较快进入工作状态。</div></div>
+  </details>
+  <details class="qa">
+    <summary>Q6｜如果让你从零搭建一个城市和商圈选址分析模型，你会怎么做？</summary>
+    <div class="answer"><div class="script">我会先把问题拆成城市、商圈和具体点位三个层级，因为三个层级的数据粒度和决策问题不一样。
+
+    在城市层面，我会先明确公司对区域的销量目标和门店类型，再收集人口规模、收入水平、汽车保有量、新能源渗透率、目标价格带销量、现有门店覆盖和竞品布局等信息，识别市场潜力和网络空白。
+
+    在商圈层面，我会进一步关注有效客流、目标客群、商场或汽车城的集聚程度、道路可达性、停车条件、竞品门店和租金等变量，构建商圈的分项指标和初始评分。如果历史门店数据足够，可以尝试用回归或 XGBoost 等模型预测线索、试驾或订单潜力；如果暂时没有足够的标签，可以先使用专家规则和标准化评分建立基准。
+
+    在具体点位层面，需要进一步核实铺位位置、展示空间、现场动线、物业条件和租赁成本。模型输出不应该只有一个总分，还要展示每个维度的得分和主要风险。
+
+    最后，我会把重点候选点交给区域团队实地调研，并在开业后比较预测和实际经营结果，分析误差来源，逐步调整指标和模型。</div></div>
+  </details>
+  <details class="qa">
+    <summary>Q7｜你会如何确定选址模型中的指标和权重？</summary>
+    <div class="answer"><div class="script">我会先从业务目标倒推指标，而不是先列一堆容易获取的数据。比如如果目标是提高有效到店和试驾，就需要关注目标客群规模、有效客流、交通可达性和门店展示体验；如果目标是扩大网络覆盖，还要关注现有门店服务范围和新增覆盖人口；如果目标是提升投资回报，就必须考虑租金、装修和人力成本。
+
+    权重方面，第一版可以通过业务专家访谈和历史经验确定一个可解释的初始评分体系，但我不会把专家给出的权重当成永久标准。后续可以使用历史门店数据，分析哪些因素与经营结果更相关，再通过回归或树模型检验特征的重要性，并在不同城市、店型中做验证。
+
+    同时，我会区分硬性准入条件和可加权比较的指标。例如消防、场地面积或停车条件不符合要求，可能应该直接排除，而不是靠其他高分抵消。这样模型既能做排序，也能保留业务底线。</div></div>
+  </details>
+  <details class="qa">
+    <summary>Q8｜如果只能选择一种机器学习算法，你会选择什么？</summary>
+    <div class="answer"><div class="script">如果数据主要是结构化业务数据，而且目标是预测候选商圈的线索或订单表现，我会优先考虑树模型，例如 XGBoost 或 CatBoost。但我不会认为它们在所有情况下都最好。
+
+    原因是选址数据中可能存在比较复杂的非线性关系，例如客流达到一定规模后，继续增加客流的边际价值可能下降；竞品数量和销量之间也可能不是简单的线性关系。树模型比较擅长处理这类关系，也能识别特征之间的交互。
+
+    但我会先建立线性回归等简单基准模型，再比较不同模型在验证集和跨城市数据上的表现。如果样本量很少，或者业务需要非常强的解释性，简单模型和规则评分可能反而更合适。最终选择要看模型是否稳定、能否解释，以及能否真正提高前列候选点的命中率。</div></div>
+  </details>
+  <details class="qa">
+    <summary>Q9｜为什么高人流商圈不一定适合开理想门店？</summary>
+    <div class="answer"><div class="script">因为客流规模和购车意向不是同一个概念。一个大型商场可能每天有很多人，但其中可能有相当一部分是餐饮、娱乐或日常购物客群，并不一定是目标价格带的汽车消费者。相反，汽车城整体人流可能没有综合商场大，但来访者的购车目的更明确。
+
+    所以我会把客流进一步拆成客流规模、客流时段、目标客群匹配度、到店动线和有效触达机会，再结合消费能力、汽车市场需求、竞品和门店成本判断。对于汽车这种高客单价、长决策周期的商品，用户能否方便地看车、试驾和多次到店，比单纯经过的人数更重要。</div></div>
+  </details>
+  <details class="qa">
+    <summary>Q10｜如果模型推荐的点位，区域团队认为不合适，你怎么办？</summary>
+    <div class="answer"><div class="script">我会先了解区域团队不认可的具体原因，而不是直接认为是对方不理解模型。因为区域团队可能掌握了线上数据没有覆盖的信息，例如物业条件发生变化、商场客流正在下滑、周边道路施工，或者竞品即将开业。
+
+    我会把模型推荐的分项依据展示出来，和区域团队逐项核对。如果是数据问题，就回到数据源更新；如果是模型没有考虑到某个关键因素，就评估是否应该补充特征或增加规则；如果是业务判断和模型结果暂时无法统一，可以安排进一步调研，或者把点位列为待验证而不是直接通过或否决。
+
+    我认为模型的作用是提高判断效率，而不是替代业务团队。真正好的模型应该能够吸收一线反馈，并且随着现场信息不断更新。</div></div>
+  </details>
+  <details class="qa">
+    <summary>Q11｜门店开业后表现不好，如何判断是选址问题还是运营问题？</summary>
+    <div class="answer"><div class="script">我会先拆解经营漏斗，而不是直接看最终交付量。如果线索量就明显低于预测，可能需要检查商圈需求、客流质量、门店可见度和区域市场变化；如果线索量正常但到店率低，可能涉及线索质量、距离、邀约和客户跟进；如果到店量正常但试驾或订单转化低，则需要进一步检查门店体验、车型匹配、销售接待和竞争情况。
+
+    同时，我会比较同城市、同店型、相似开业时长的门店，避免把新店爬坡期和成熟门店直接比较。再把实际表现与开店前的预测特征进行对照，判断是否存在系统性高估或低估。
+
+    最后，我会把原因拆成选址、数据、模型、运营和外部市场变化几类。只有确认是选址或预测逻辑的问题，才应该用于修改选址模型；运营问题则应反馈给对应团队处理。</div></div>
+  </details>
+  <details class="qa">
+    <summary>Q12｜如何利用 AI 处理商场和汽车城的调研资料？</summary>
+    <div class="answer"><div class="script">我会把 AI 用在非结构化资料转结构化数据的环节。比如现场调研会产生照片、文字记录、物业介绍和表格，可以先通过 OCR 识别图片和文档内容，再使用大模型按照统一的数据字典抽取商场名称、地址、楼层、面积、客流、租金、停车条件、竞品品牌和周边配套等字段。
+
+    但抽取结果不能直接进入模型。我会设置字段类型、单位、取值范围和必填规则，例如面积必须是数值，租金要明确是每天每平方米还是每月每平方米，客流要注明统计周期。对关键字段还需要人工抽样核验，无法识别的内容应该保留为未知，而不是让模型猜测。
+
+    最后将校验后的信息写入统一数据库，供城市和商圈模型使用。这样既可以减少人工整理时间，也能保证信息来源和更新时间可追溯。</div></div>
+  </details>
+  <details class="qa">
+    <summary>Q13｜你怎么看理想汽车目前的门店分布策略？</summary>
+    <div class="answer"><div class="script">我关注到理想管理层在 2026 年谈到渠道布局时强调重质不重量，新增门店优先考虑头部商场和优质汽车城，同时提到低线城市网络相对完善，随着纯电车型销量提升，会更加关注高线城市布局。
+
+    我理解这背后有两个变化。第一，过去网络建设可能更强调扩大覆盖范围，现在更需要关注门店本身的质量，例如商圈客流是否有效、物业条件是否合适、门店是否能形成稳定的线索和试驾。第二，产品结构在变化，纯电产品的发展会让高线城市的目标用户密度、体验场景和充电网络协同变得更重要。
+
+    因此我认为网络分析不能只看城市有没有门店，而应该进一步看同一城市不同商圈的覆盖质量、门店之间是否重叠，以及新增点位能否带来真正的增量覆盖和经营贡献。</div></div>
+  </details>
+  <details class="qa">
+    <summary>Q14｜你对理想近期产品有什么了解？</summary>
+    <div class="answer"><div class="script">我了解到理想目前的产品布局主要包括 L 系列增程 SUV、i 系列纯电 SUV，以及 MEGA 纯电 MPV。2026 年产品更新比较密集，例如 5 月推出全新 L9，6 月推出全新 L8，7 月更新 L6，9 月推出新款 MEGA 和 i9，10 月又发布 2026 款 i6。
+
+    我认为这些产品变化对网络规划的影响主要体现在三个方面。首先，产品价格带和车型覆盖更加丰富，潜在客群也会扩大；其次，纯电产品线的拓展会让高线城市的用户触达和补能条件更值得关注；最后，不同车型的展示、试驾和空间需求可能不同，门店的展示组合和体验能力也需要匹配产品策略。对于网络分析来说，产品发布不只是销售部门的事情，也会影响城市和商圈的优先级。</div></div>
+  </details>
+  <details class="qa">
+    <summary>Q15｜你了解理想汽车的营收情况吗？</summary>
+    <div class="answer"><div class="script">我看过理想汽车最近几期财报。2025 年全年总收入约 1123 亿元，其中汽车销售收入约 1067 亿元，全年交付 406,343 辆；总收入同比下降约 22.3%，净利润约 11 亿元，同比下降幅度也比较明显。
+
+    2026 年第二季度总收入约 257 亿元，汽车销售收入约 241 亿元，交付 98,330 辆。相比去年同期，总收入下降约 15.1%，车辆毛利率为 9.4%，但相比第一季度的 6.1%有所回升。第三季度财报截至目前还没有正式发布，公司公告计划在 11 月 25 日发布。
+
+    我理解这些数据说明公司仍处在产品和经营调整阶段，收入和毛利率承压，因此门店网络不能只追求规模扩张，更需要关注单店质量、投入产出和新增门店能否带来有效增量。我觉得这也是网络分析岗位有价值的地方。</div></div>
+  </details>
+  <details class="qa">
+    <summary>Q16｜SQL 你会到什么程度？</summary>
+    <div class="answer"><div class="script">我目前掌握 SQL 的基础查询、条件筛选、分组聚合和多表关联，也理解窗口函数在排名、去重和计算环比中的用途。比如如果要分析不同城市门店的经营表现，我会先把门店表和月度经营表关联，再按城市和门店类型汇总线索、到店、试驾和交付指标；如果要找每个城市潜力分最高的候选点位，可以用 ROW_NUMBER 按城市分组排名。
+
+    我认为 SQL 在这个岗位中主要是从业务数据库提取和整理数据，Python 则更适合后续的数据清洗、特征工程、建模和可视化。我的复杂 SQL 实战经验还需要继续积累，但我理解常见查询的逻辑，也愿意根据公司的数据表结构快速熟悉业务查询。</div></div>
+  </details>
+  <details class="qa">
+    <summary>Q17｜你对 GIS 或空间分析工具不熟悉，怎么办？</summary>
+    <div class="answer"><div class="script">我目前的优势主要在统计分析、Python 数据处理和机器学习建模，GIS 工具和专业空间分析的实际项目经验相对不足。我对空间分析的基本逻辑有了解，例如把地址转成坐标、用 POI 描述周边设施、计算到现有门店的距离或驾车时间，以及分析门店覆盖范围和重叠情况。
+
+    如果岗位需要使用 GIS 工具，我会先学习公司的数据流程和工具标准，再从最常用的任务入手，例如地理编码、空间关联、缓冲区和等时圈分析。我也会结合 Python 的 GeoPandas 等工具理解空间数据处理逻辑。对我来说，工具本身可以学习，但更重要的是先弄清楚业务为什么需要这个空间指标，以及它应该如何影响选址判断。</div></div>
+  </details>
+  <details class="qa">
+    <summary>Q18｜你能接受大量执行工作和出差吗？</summary>
+    <div class="answer"><div class="script">我可以接受。因为我理解这个岗位不是坐在办公室里单纯跑模型，前期需要处理大量基础数据，也需要去现场验证商圈和点位。尤其是汽车门店选址，很多因素不能完全依赖线上数据，例如门店动线、停车、可见度和物业条件，必须通过实地调研确认。
+
+    我愿意从数据核验、调研记录和基础分析做起，先把业务口径和流程掌握好。在熟悉工作之后，我也会思考哪些重复步骤可以通过 SQL、Python 或 AI 提高效率，但不会为了自动化而忽略人工核验和业务判断。</div></div>
+  </details>
+  <details class="qa">
+    <summary>Q19｜你的不足是什么？</summary>
+    <div class="answer"><div class="script">我目前比较明显的不足，是对汽车零售网络和空间分析的实战经验还不够。虽然我有统计建模、Python 数据处理和 AI 应用相关经历，但没有独立负责过一个城市的门店规划，也没有长期使用 GIS 工具处理真实选址项目。
+
+    我正在通过梳理汽车零售网络的业务流程、学习空间分析的基本方法，以及结合理想的公开门店和产品数据练习分析来补齐这部分。另一方面，我认为自己在统计和数据处理方面有一定基础，因此能够比较快地理解数据口径和模型方法。入职后我会先跟着团队把现有流程和业务指标学扎实，再逐步承担独立分析任务。</div></div>
+  </details>
+  <details class="qa">
+    <summary>Q20｜未来三年的职业规划是什么？</summary>
+    <div class="answer"><div class="script">短期我希望先熟悉汽车零售网络的业务流程、数据口径和选址方法，能够独立完成城市和商圈数据整理、基础分析、候选点位评估以及门店经营复盘。
+
+    中期希望能够独立负责一个区域或某类网络规划专题，不仅能完成数据分析和模型应用，还能与区域团队沟通，推动分析结论真正用于点位开发和网络调整。
+
+    长期我希望成长为兼具数据分析能力和业务理解能力的分析人才，能够把机器学习、空间分析和经营决策结合起来，持续帮助业务提升网络效率。我目前更希望先把这个方向的专业能力做扎实，而不是过早限定自己一定要转向某一个管理或产品岗位。</div></div>
+  </details>
+  <details class="qa">
+    <summary>Q21｜你怎么看模型推荐和业务经验之间的关系？</summary>
+    <div class="answer"><div class="script">我认为两者不是对立关系。模型的优势是能够同时处理大量候选点位，按照统一口径进行比较，减少完全依赖个人经验带来的标准不一致；业务经验的优势是能够补充模型暂时没有的数据，例如物业变化、区域规划、竞争对手动态和当地消费者习惯。
+
+    如果两者不一致，我会先检查数据和指标定义，再确认业务人员是否掌握新的现场信息。如果现场信息真实且重要，就应该把它结构化记录下来，评估是否需要补充到模型中。对于模型无法覆盖的特殊情况，可以保留人工复核机制。最终应该通过后续经营表现验证哪种判断更可靠，而不是简单地让模型或经验一方绝对优先。</div></div>
+  </details>
+  <details class="qa">
+    <summary>Q22｜你希望从这个岗位获得什么？</summary>
+    <div class="answer"><div class="script">我希望获得两方面的成长。第一是把统计和机器学习能力应用到真实业务决策中，学习如何从多源数据构建指标、选择模型、评估预测结果，并理解模型在实际业务中的限制。第二是深入了解汽车零售和线下网络规划，真正参与从市场分析、商圈调研到门店复盘的完整流程。
+
+    我比较看重的是能够接触真实业务数据和完整决策链条，而不只是完成单次的数据提取或报告任务。我希望通过这个岗位逐步建立既懂数据方法、又能理解业务场景的能力。</div></div>
+  </details>
+</section>
+
+
+<section id="sources">
+  <div class="kicker">References & source notes</div>
+  <h2>公开资料来源与使用说明</h2>
+  <p>公司经营、产品和门店数据优先使用理想汽车投资者关系网站及港交所披露文件；渠道策略引用 2026 年业绩会相关问答报道。以下数据均有统计时点，面试前建议再次查看公司公告。</p>
+  <ul>
+    <li><a href="https://ir.lixiang.com/zh-hans" target="_blank" rel="noopener">理想汽车投资者关系网站</a>——公司介绍、公告、财报和最新交付更新。</li>
+    <li><a href="https://ir.lixiang.com/news-releases/news-release-details/li-auto-inc-announces-unaudited-fourth-quarter-and-full-year-4" target="_blank" rel="noopener">理想汽车 2025 年第四季度及全年财务业绩（2026-03-12）</a>——2025 年总收入、汽车销售收入、交付、毛利率、净利润和年末门店网络。</li>
+    <li><a href="https://ir.lixiang.com/news-releases/news-release-details/li-auto-inc-announces-unaudited-first-quarter-2026-financial" target="_blank" rel="noopener">理想汽车 2026 年第一季度财务业绩（2026-05-28）</a>——Q1 收入、交付、车辆毛利率和门店网络。</li>
+    <li><a href="https://ir.lixiang.com/zh-hans/news-releases/news-release-details/li-auto-inc-announces-unaudited-second-quarter-2026-financial/" target="_blank" rel="noopener">理想汽车 2026 年第二季度财务业绩（2026-08-26）</a>——截至本指南版本日期最新已发布的季度财务数据。</li>
+    <li><a href="https://ir.lixiang.com/zh-hans/news-releases/news-release-details/li-auto-inc-october-2026-delivery-update" target="_blank" rel="noopener">理想汽车 2026 年 10 月交付更新（2026-10-31）</a>——10 月交付、累计交付、零售中心、服务网络和超充站数量。</li>
+    <li><a href="https://ir.lixiang.com/news-releases/news-release-details/li-auto-inc-launches-all-new-li-l9-pioneering-embodied-ai/" target="_blank" rel="noopener">全新理想 L9 发布公告（2026-05-15）</a>。</li>
+    <li><a href="https://ir.lixiang.com/news-releases/news-release-details/li-auto-inc-launches-all-new-li-l8-five-seat-flagship-suv" target="_blank" rel="noopener">全新理想 L8 发布公告（2026-06-23）</a>。</li>
+    <li><a href="https://ir.lixiang.com/news-releases/news-release-details/li-auto-inc-launches-new-li-l6-versatile-all-wheel-drive-suv" target="_blank" rel="noopener">新一代理想 L6 发布公告（2026-07-16）</a>。</li>
+    <li><a href="https://ir.lixiang.com/news-releases/news-release-details/li-auto-inc-launches-new-li-mega-high-tech-flagship-mpv/" target="_blank" rel="noopener">新款理想 MEGA 发布公告（2026-09-02）</a>。</li>
+    <li><a href="https://ir.lixiang.com/zh-hans/news-releases/news-release-details/li-auto-inc-launches-li-i9-pioneering-flagship-family-suv/" target="_blank" rel="noopener">理想 i9 发布公告（2026-09-16）</a>。</li>
+    <li><a href="https://ir.lixiang.com/news-releases/news-release-details/li-auto-inc-launches-2026-li-i6-pioneering-five-seat-suv" target="_blank" rel="noopener">2026 款理想 i6 发布公告（2026-10-28）</a>。</li>
+    <li><a href="https://finance.sina.com.cn/roll/2026-03-13/doc-inhquwcs4241095.shtml" target="_blank" rel="noopener">理想汽车 2025 年 Q4 业绩会渠道策略问答报道（2026-03-13）</a>——“重质不重量”、优先头部商场和优质汽车城、低线城市覆盖及高线城市加密方向。</li>
+    <li><a href="https://www.hkexnews.hk/listedco/listconews/sehk/2026/0410/2026041000367_c.pdf" target="_blank" rel="noopener">理想汽车 2025 年度报告（港交所披露）</a>。</li>
+  </ul>
+  <div class="warn"><b>口径提醒：</b>2025 年末 548 家零售中心、2026 年 10 月末 481 家零售中心是不同日期披露的网络截面。数量变化本身不能证明每一家门店的开闭原因；结合管理层关于低效门店优化和“重质不重量”的公开表述，可以讨论网络质量和结构优化，但不要把净变化直接解释成某一单一原因。</div>
+  <p class="small">本指南以用户提供的岗位 JD 和上传的《欧莱雅 AIT 智能训练师面试准备手册》作为结构参考，并结合用户已提供的教育、项目和实习背景重新编写。网络规划流程、算法和 SQL 示例为通用方法论；岗位组织归属、内部“三端门店”定义、模型权重和数据库字段并未由公开资料确认。回答中请坚持真实经历边界。</p>
+</section>
+
+<div class="footer">理想汽车｜网络分析专员面试准备指南 · 深度加强版 · 2026 年 11 月 16 日</div>
+</main>
+</div>
+</div>
+<script>
+const searchBox=document.getElementById('searchBox');
+searchBox.addEventListener('input',()=>{
+  const q=searchBox.value.trim().toLowerCase();
+  document.querySelectorAll('main section').forEach(section=>{
+    const match=!q || section.innerText.toLowerCase().includes(q);
+    section.style.display=match?'':'none';
+  });
+});
+</script>
+</body>
+</html>
